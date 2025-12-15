@@ -1,11 +1,10 @@
 import Quickshell
 import Quickshell.Hyprland
 import Quickshell.Services.Pipewire
-import Quickshell.Io
 import QtQuick
-import QtQuick.Controls
-import Qt5Compat.GraphicalEffects
 
+import "./Bar"
+import ".."
 
 PanelWindow {
     anchors {
@@ -38,7 +37,7 @@ PanelWindow {
             Text {
                 text: "WIP"
                 font.pixelSize: 10
-                color: background.color == Colors.background ? Colors.primary : Colors.topPrimary
+                color: Colors.primary
             }
         }
 
@@ -61,12 +60,10 @@ PanelWindow {
                     // Workspace Colors
                     gradient: Gradient {
                         id: workspaceColor
-                        GradientStop { 
+                        GradientStop {
                             position: 0.0
 
-                            color: workspaceMouseArea.containsMouse ? 
-                            Colors.primary : Hyprland.focusedWorkspace.id == modelData.id ?
-                            Colors.primaryDark : Colors.primaryContainer
+                            color: workspaceMouseArea.containsMouse ? Colors.primary : Hyprland.focusedWorkspace.id == modelData.id ? Colors.primaryDark : Colors.primaryContainer
 
                             Behavior on color {
                                 ColorAnimation {
@@ -75,12 +72,10 @@ PanelWindow {
                                 }
                             }
                         }
-                        GradientStop { 
+                        GradientStop {
                             position: 1.0
 
-                            color: workspaceMouseArea.containsMouse ?
-                            Colors.primary : Hyprland.focusedWorkspace.id == modelData.id ?
-                            Colors.primaryLight : Colors.primaryContainerVariant
+                            color: workspaceMouseArea.containsMouse ? Colors.primary : Hyprland.focusedWorkspace.id == modelData.id ? Colors.primaryLight : Colors.primaryContainerVariant
 
                             Behavior on color {
                                 ColorAnimation {
@@ -90,7 +85,7 @@ PanelWindow {
                             }
                         }
                     }
-                
+
                     // Switching Animation
                     Behavior on implicitHeight {
                         NumberAnimation {
@@ -127,12 +122,12 @@ PanelWindow {
                 id: hours
                 anchors.horizontalCenter: parent.horizontalCenter
                 horizontalAlignment: Text.AlignHCenter
-                text: Qt.formatDateTime(clock.date, "hh\nmm AP").slice(0,5)
+                text: Qt.formatDateTime(clock.date, "hh\nmm AP").slice(0, 5)
                 font.pixelSize: 20
                 font.family: "SF Pro Display"
                 font.weight: 600
                 font.letterSpacing: 0.3
-                color: background.color == Colors.background ? Colors.primary : Colors.topPrimary
+                color: Colors.primary
             }
 
             Rectangle {
@@ -143,46 +138,7 @@ PanelWindow {
                 color: Colors.primary
             }
 
-            Button {
-                background: Rectangle {color: "transparent"; anchors.horizontalCenter: parent.horizontalCenter}
-                anchors.horizontalCenter: parent.horizontalCenter
-                padding: 0
-                id: volumeIcon
-
-                contentItem: Image {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    height: 21
-                    width: 21
-                    sourceSize.width: width
-                    sourceSize.height: height
-                    
-                    PwObjectTracker {
-                        objects: Pipewire.nodes.values
-                    }
-                    property var activeSink: Pipewire.defaultAudioSink.audio
-                    function getAudioIconPath() {
-                        if (!activeSink) return "icons/volume-xmark-solid-full.svg"
-                        else if (activeSink.muted) {
-                            return "icons/volume-xmark-solid-full.svg"
-                        } else if (activeSink.volume >= 0.75) {
-                            return "icons/volume-high-solid-full.svg"
-                        } else if (activeSink.volume >= 0.50) {
-                            return "icons/volume-low-solid-full.svg"
-                        } else if (activeSink.volume >= 0.25) {
-                            return "icons/volume-low-solid-full.svg"
-                        } else {
-                            return "icons/volume-off-solid-full.svg"
-                        }
-                    }
-                    source: getAudioIconPath()
-
-                    ColorOverlay {
-                        anchors.fill: parent
-                        source: parent
-                        color: Colors.primary
-                    }
-                }
-            }
+			VolumeIcon{}
         }
     }
 }
