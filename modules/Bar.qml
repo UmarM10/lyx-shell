@@ -1,10 +1,8 @@
 import Quickshell
-import Quickshell.Hyprland
-import Quickshell.Services.Pipewire
 import QtQuick
 
-import "./Bar"
-import ".."
+import qs
+import qs.modules.Bar
 
 PanelWindow {
     anchors {
@@ -22,9 +20,12 @@ PanelWindow {
 
     Rectangle {
         id: background
-        anchors.fill: parent
         color: Colors.background
         radius: 10
+
+		anchors.horizontalCenter: parent.horizontalCenter
+		anchors.verticalCenter: parent.verticalCenter
+		anchors.fill: parent
 
         Column {
             id: startOfBar
@@ -33,12 +34,8 @@ PanelWindow {
                 topMargin: 10
                 horizontalCenter: parent.horizontalCenter
             }
-
-            Text {
-                text: "WIP"
-                font.pixelSize: 10
-                color: Colors.primary
-            }
+			
+			NotificationsIcon{}
         }
 
         Column {
@@ -49,60 +46,7 @@ PanelWindow {
             }
             spacing: 4.5
 
-            Repeater {
-                id: workspaces
-                model: Hyprland.workspaces
-                Rectangle {
-                    implicitWidth: 20
-                    implicitHeight: Hyprland.focusedWorkspace.id == modelData.id ? 63.5 : 17
-                    radius: 10
-
-                    // Workspace Colors
-                    gradient: Gradient {
-                        id: workspaceColor
-                        GradientStop {
-                            position: 0.0
-
-                            color: workspaceMouseArea.containsMouse ? Colors.primary : Hyprland.focusedWorkspace.id == modelData.id ? Colors.primaryDark : Colors.primaryContainer
-
-                            Behavior on color {
-                                ColorAnimation {
-                                    duration: 150
-                                    easing.type: Easing.OutQuad
-                                }
-                            }
-                        }
-                        GradientStop {
-                            position: 1.0
-
-                            color: workspaceMouseArea.containsMouse ? Colors.primary : Hyprland.focusedWorkspace.id == modelData.id ? Colors.primaryLight : Colors.primaryContainerVariant
-
-                            Behavior on color {
-                                ColorAnimation {
-                                    duration: 150
-                                    easing.type: Easing.OutQuad
-                                }
-                            }
-                        }
-                    }
-
-                    // Switching Animation
-                    Behavior on implicitHeight {
-                        NumberAnimation {
-                            duration: 200
-                            easing.type: Easing.OutQuad
-                        }
-                    }
-
-                    // Go to selected workspace
-                    MouseArea {
-                        id: workspaceMouseArea
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        onClicked: Hyprland.dispatch("workspace " + modelData.id)
-                    }
-                }
-            }
+			Workspaces{}
         }
 
         Column {

@@ -3,7 +3,7 @@ import Qt5Compat.GraphicalEffects
 import QtQuick
 
 import qs
-import "js/volume_icon.js" as Logic
+import "js/notifications_icon.js" as Logic
 
 Rectangle {
     id: volumeIconBox
@@ -12,7 +12,7 @@ Rectangle {
     implicitWidth: 30
 
     Image {
-        id: volumeIcon
+        id: notificationsIcon 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         height: 21
@@ -22,9 +22,9 @@ Rectangle {
 
         // Animation
         SequentialAnimation {
-            id: volumeIconAnimation
+            id: notificationsIconAnimation
             NumberAnimation {
-                target: volumeIcon
+                target: notificationsIcon
                 property: "scale"
                 to: 0.75
                 duration: 75
@@ -36,7 +36,7 @@ Rectangle {
             }
 
             NumberAnimation {
-                target: volumeIcon
+                target: notificationsIcon
                 property: "scale"
                 to: 1.0
                 duration: 100
@@ -44,14 +44,10 @@ Rectangle {
             }
         }
         onSourceChanged: {
-            volumeIconAnimation.restart();
+            notificationsIconAnimation.restart();
         }
 
-        PwObjectTracker {
-            objects: Pipewire.nodes.values
-        }
-        
-        source: Logic.getAudioIconPath()
+		source: "../../icons/bell-solid-full.svg"        
 
         ColorOverlay {
             anchors.fill: parent
