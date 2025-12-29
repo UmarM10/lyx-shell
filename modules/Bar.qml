@@ -5,6 +5,7 @@ import qs
 import qs.modules.Bar
 
 PanelWindow {
+    id: rootPanel
     anchors {
         left: true
         top: true
@@ -23,9 +24,9 @@ PanelWindow {
         color: Colors.background
         radius: 10
 
-		anchors.horizontalCenter: parent.horizontalCenter
-		anchors.verticalCenter: parent.verticalCenter
-		anchors.fill: parent
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.fill: parent
 
         Column {
             id: startOfBar
@@ -34,8 +35,8 @@ PanelWindow {
                 topMargin: 10
                 horizontalCenter: parent.horizontalCenter
             }
-			
-			NotificationsIcon{}
+
+            NotificationsIcon {}
         }
 
         Column {
@@ -46,7 +47,7 @@ PanelWindow {
             }
             spacing: 4.5
 
-			Workspaces{}
+            Workspaces {}
         }
 
         Column {
@@ -82,7 +83,13 @@ PanelWindow {
                 color: Colors.primary
             }
 
-			VolumeIcon{}
+            VolumePopup {
+                id: volumePopup
+            }
+            VolumeIcon {
+                id: volumeIcon
+				onVolumePopupToggled: volumePopup.visible = !volumePopup.visible
+            }
         }
     }
 }

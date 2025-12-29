@@ -60,10 +60,12 @@ Rectangle {
         }
     }
 
+	signal volumePopupToggled()
     MouseArea {
         id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
+		onClicked: volumePopupToggled()
     }
 
     radius: 4
