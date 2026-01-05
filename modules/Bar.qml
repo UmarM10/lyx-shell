@@ -63,17 +63,7 @@ PanelWindow {
                 id: clock
                 precision: SystemClock.Seconds
             }
-            Text {
-                id: hours
-                anchors.horizontalCenter: parent.horizontalCenter
-                horizontalAlignment: Text.AlignHCenter
-                text: Qt.formatDateTime(clock.date, "hh\nmm AP").slice(0, 5)
-                font.pixelSize: 20
-                font.family: "SF Pro Display"
-                font.weight: 600
-                font.letterSpacing: 0.3
-                color: Colors.primary
-            }
+            TimeButton {}
 
             Rectangle {
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -88,7 +78,15 @@ PanelWindow {
             }
             VolumeIcon {
                 id: volumeIcon
-				onVolumePopupToggled: volumePopup.visible = !volumePopup.visible
+                // onVolumeIconClicked: volumePopup.state == "hidden" ? volumePopup.state = "" : volumePopup.state = "hidden"
+                // onVolumePopupToggled: !volumePopup.visible ? volumePopup.visible = true :Pipewire.defaultAudioSink.audio.visible = false
+                onVolumeIconClicked: {
+                    if (volumePopup.popupState === "hidden") {
+                        volumePopup.popupState = "";
+                    } else {
+                        volumePopup.popupState = "hidden";
+                    }
+                }
             }
         }
     }

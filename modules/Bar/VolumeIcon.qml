@@ -4,6 +4,7 @@ import QtQuick
 
 import qs
 import "js/volume_icon.js" as Logic
+import "js/bar_icon.js" as BarIconLogic
 
 Rectangle {
     id: volumeIconBox
@@ -56,20 +57,20 @@ Rectangle {
         ColorOverlay {
             anchors.fill: parent
             source: parent
-            color: Logic.getForegroundColor()
+            color: BarIconLogic.getForegroundColor()
         }
     }
 
-	signal volumePopupToggled()
+	signal volumeIconClicked()
     MouseArea {
         id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
-		onClicked: volumePopupToggled()
+		onClicked: volumeIconClicked()
     }
 
     radius: 4
-    color: Logic.getBackgroundColor()
+    color: BarIconLogic.getBackgroundColor()
     Behavior on color {
         ColorAnimation {
             duration: 75
