@@ -3,11 +3,11 @@ import Qt5Compat.GraphicalEffects
 import QtQuick
 
 import qs
+import qs.common
 import "js/volume_icon.js" as Logic
-import "js/bar_icon.js" as BarIconLogic
 
-Rectangle {
-    id: volumeIconBox
+LyxButton {
+    id: root
     anchors.horizontalCenter: parent.horizontalCenter
     implicitHeight: 25.5
     implicitWidth: 30
@@ -22,59 +22,25 @@ Rectangle {
         sourceSize.height: 21
 
         // Animation
-        SequentialAnimation {
-            id: volumeIconAnimation
-            NumberAnimation {
-                target: volumeIcon
-                property: "scale"
-                to: 0.75
-                duration: 75
-                easing.type: Easing.OutQuad
-            }
-
-            PauseAnimation {
-                duration: 50
-            }
-
-            NumberAnimation {
-                target: volumeIcon
-                property: "scale"
-                to: 1.0
-                duration: 100
-                easing.type: Easing.OutQuad
-            }
+        LyxIconAnimation {
+            id: iconSwapAnimation
+            target: volumeIcon
         }
+
         onSourceChanged: {
-            volumeIconAnimation.restart();
+            iconSwapAnimation.restart();
         }
 
         PwObjectTracker {
             objects: Pipewire.nodes.values
         }
-        
+
         source: Logic.getAudioIconPath()
 
         ColorOverlay {
             anchors.fill: parent
             source: parent
-            color: BarIconLogic.getForegroundColor()
-        }
-    }
-
-	signal volumeIconClicked()
-    MouseArea {
-        id: mouseArea
-        anchors.fill: parent
-        hoverEnabled: true
-		onClicked: volumeIconClicked()
-    }
-
-    radius: 4
-    color: BarIconLogic.getBackgroundColor()
-    Behavior on color {
-        ColorAnimation {
-            duration: 75
-            easing.type: Easing.OutQuad
+            color: root.foregroundColor
         }
     }
 }

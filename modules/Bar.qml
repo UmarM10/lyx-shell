@@ -22,6 +22,7 @@ PanelWindow {
     Rectangle {
         id: background
         color: Colors.background
+		opacity: 0.95
         radius: 10
 
         anchors.horizontalCenter: parent.horizontalCenter
@@ -73,21 +74,7 @@ PanelWindow {
                 color: Colors.primary
             }
 
-            VolumePopup {
-                id: volumePopup
-            }
-            VolumeIcon {
-                id: volumeIcon
-                // onVolumeIconClicked: volumePopup.state == "hidden" ? volumePopup.state = "" : volumePopup.state = "hidden"
-                // onVolumePopupToggled: !volumePopup.visible ? volumePopup.visible = true :Pipewire.defaultAudioSink.audio.visible = false
-                onVolumeIconClicked: {
-                    if (volumePopup.popupState === "hidden") {
-                        volumePopup.popupState = "";
-                    } else {
-                        volumePopup.popupState = "hidden";
-                    }
-                }
-            }
+            VolumeIcon {}
         }
     }
 }

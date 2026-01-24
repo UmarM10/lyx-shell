@@ -42,7 +42,7 @@ PopupWindow {
             text: Pipewire.defaultAudioSink.audio.muted ? "Volume (Muted)" : "Volume"
             font.family: "Figtree"
             font.pixelSize: 17
-            font.weight: 600
+            font.weight: 700
 
             x: 10
             y: 5
