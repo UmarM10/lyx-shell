@@ -60,7 +60,7 @@ PanelWindow {
                 bottomMargin: 10
                 horizontalCenter: parent.horizontalCenter
             }
-            spacing: 3
+            spacing: 5
             
             TimeButton {}
 
@@ -72,7 +72,7 @@ PanelWindow {
                 color: Colors.primary
             }
 
-            VolumeIcon {}
+			ControlsSection {}
         }
     }
 }
