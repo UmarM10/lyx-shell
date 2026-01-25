@@ -47,6 +47,24 @@ Rectangle {
 
 		iconId: Logic.getBatteryIconPath()
 	}
+	// Charging Icon
+	Rectangle {
+		visible: UPower.displayDevice.state == UPowerDeviceState.Charging ? true : false
+		x: 3
+		y: 30
+		radius: 20
+		implicitHeight: 10
+		implicitWidth: 10
+		color: Colors.primaryContainer
+		MaterialIcon {
+			anchors.horizontalCenter: parent.horizontalCenter
+			anchors.verticalCenter: parent.verticalCenter
+			height: 8
+			width: 8
+			color: Colors.primary
+			iconId: "bolt.svg"
+		}
+	}
 
 	// Wi-Fi Icon
 	MaterialIcon {
