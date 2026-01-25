@@ -24,7 +24,7 @@ function getBatteryIconPath() {
 	} else if (UPower.displayDevice.percentage >= 0.75) {
 		return "battery-6.svg";
 	} else if (UPower.displayDevice.percentage >= 0.625) {
-		return "batter-5.svg";
+		return "battery-5.svg";
 	} else if (UPower.displayDevice.percentage >= 0.50) {
 		return "battery-4.svg";
 	} else if (UPower.displayDevice.percentage >= 0.375) {
