@@ -1,4 +1,5 @@
 import QtQuick
+import Quickshell
 
 import qs.common
 
@@ -8,6 +9,10 @@ LyxButton {
 	implicitHeight: 47
 	implicitWidth: 30
 	
+	SystemClock {
+		id: clock
+		precision: SystemClock.Seconds
+	}
 	Text {
 		id: hours
 		anchors.horizontalCenter: parent.horizontalCenter

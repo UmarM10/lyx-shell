@@ -11,11 +11,13 @@ PanelWindow {
         top: true
         bottom: true
     }
-    margins {
+	margins {
         left: 5
         top: 5
         bottom: 5
-    }
+		right: 5
+	}
+
     implicitWidth: 45
     color: "transparent"
 
@@ -59,11 +61,7 @@ PanelWindow {
                 horizontalCenter: parent.horizontalCenter
             }
             spacing: 3
-
-            SystemClock {
-                id: clock
-                precision: SystemClock.Seconds
-            }
+            
             TimeButton {}
 
             Rectangle {
