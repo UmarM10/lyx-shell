@@ -10,139 +10,217 @@ import qs.modules
 import "./js/controls_bar_section.js" as Logic
 
 Rectangle {
-	id: root
-	anchors.horizontalCenter: parent.horizontalCenter
-	implicitWidth: 35
-	implicitHeight: 65
-	
-	radius: 12
-	color: Logic.getBackgroundColor()
-	border.width: 2
-	border.color: Colors.primaryContainer 
+    id: root
+    anchors.horizontalCenter: parent.horizontalCenter
+    implicitWidth: 35
+    implicitHeight: 65
 
-	Behavior on color { ColorAnimation { duration: 100 } }
-	Behavior on border.color { ColorAnimation { duration: 100 } }
+    radius: 12
+    color: Logic.getBackgroundColor()
+    border.width: 2
+    border.color: Colors.primaryContainer
 
-	// Volume Icon
-	MaterialIcon {
-		id: volumeIcon
-		anchors.horizontalCenter: parent.horizontalCenter
-		anchors.verticalCenter: parent.top
-		anchors.verticalCenterOffset: 15
-		height: 19
-		width: 19
-		color: Colors.primary
+    Behavior on color {
+        ColorAnimation {
+            duration: 100
+        }
+    }
+    Behavior on border.color {
+        ColorAnimation {
+            duration: 75
+        }
+    }
 
-		PwObjectTracker {
-			objects: Pipewire.nodes.values
-		}
+    // Volume Icon
+    MaterialIcon {
+        id: volumeIcon
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.top
+        anchors.verticalCenterOffset: 15
+        height: 19
+        width: 19
+        color: Colors.primary
 
-		iconId: Logic.getAudioIconPath()
-	}
+        PwObjectTracker {
+            objects: Pipewire.nodes.values
+        }
 
-	// Battery/Brightness Icon
-	MaterialIcon {
-		id: batteryBrightnessIcon
-		anchors.horizontalCenter: parent.horizontalCenter
-		anchors.verticalCenter: parent.verticalCenter
-		height: 19
-		width: 19
-		color: Colors.primary
+        iconId: Logic.getAudioIconPath()
+    }
 
-		iconId: Logic.getBatteryIconPath()
-	}
-	// Charging Icon
-	Rectangle {
-		id: chargingIcon
-		visible: UPower.displayDevice.state == UPowerDeviceState.Charging ? true : false
-		x: 3
-		y: 30
-		radius: 20
-		implicitHeight: 10
-		implicitWidth: 10
-		color: Colors.primaryContainer
-		MaterialIcon {
-			anchors.horizontalCenter: parent.horizontalCenter
-			anchors.verticalCenter: parent.verticalCenter
-			height: 8
-			width: 8
-			color: Colors.primary
-			iconId: "bolt.svg"
-		}
-	}
+    // Battery/Brightness Icon
+    MaterialIcon {
+        id: batteryBrightnessIcon
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        height: 19
+        width: 19
+        color: Colors.primary
 
-	// Wi-Fi Icon
-	MaterialIcon {
-		id: wifiIcon
-		anchors.horizontalCenter: parent.horizontalCenter
-		anchors.verticalCenter: parent.bottom
-		anchors.verticalCenterOffset: -15
-		height: 19
-		width: 19
-		color: Colors.primary
+        iconId: Logic.getBatteryIconPath()
+    }
+    // Charging Icon
+    Rectangle {
+        id: chargingIcon
+        visible: UPower.displayDevice.state == UPowerDeviceState.Charging ? true : false
+        x: 3
+        y: 30
+        radius: 20
+        implicitHeight: 10
+        implicitWidth: 10
+        color: Colors.primaryContainer
+        MaterialIcon {
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
+            height: 8
+            width: 8
+            color: Colors.primary
+            iconId: "bolt.svg"
+        }
+    }
 
-		iconId: "network-wifi"
-	}
+    // Wi-Fi Icon
+    MaterialIcon {
+        id: wifiIcon
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.bottom
+        anchors.verticalCenterOffset: -15
+        height: 19
+        width: 19
+        color: Colors.primary
 
-	MaterialIcon {
-		id: closeIcon
-		anchors.horizontalCenter: parent.horizontalCenter
-		anchors.verticalCenter: parent.verticalCenter
-		height: 20
-		width: 20
-		color: Colors.primary
-		iconId: "close.svg"
-		visible: false
-	}
+        iconId: "network-wifi"
+    }
 
-	states: [
+    MaterialIcon {
+        id: closeIcon
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        height: 20
+        width: 20
+        color: Colors.primary
+        iconId: "close.svg"
+        visible: false
+    }
+
+    states: [
+        State {
+            name: "pressed"
+            PropertyChanges {
+                volumeIcon {
+                    visible: false
+                }
+                batteryBrightnessIcon {
+                    visible: false
+                }
+                chargingIcon {
+                    visible: false
+                }
+                wifiIcon {
+                    visible: false
+                }
+                closeIcon {
+                    visible: true
+                }
+                root {
+                    color: Colors.primaryContainer
+                    border.color: Colors.primary
+                }
+            }
+		},
 		State {
-			name: "pressed"
+			name: ""
 			PropertyChanges {
-				volumeIcon { visible: false; }
-				batteryBrightnessIcon { visible: false; }
-				chargingIcon { visible: false; }
-				wifiIcon { visible: false; }
-				closeIcon { visible: true; }
-				root { color: Colors.primaryContainer; border.color: Colors.primary }
+				volumeIcon { opacity: 1 }
+				batteryBrightnessIcon { opacity: 1 }
+				chargingIcon { opacity: 1 }
+				wifiIcon { opacity: 1 }
 			}
 		}
-	]
-	state: ""
+    ]
+    state: ""
 
-	MouseArea {
-		id: mouseArea
-		anchors.fill: parent
-		hoverEnabled: true
-		onClicked: onClickedFunc()
-	}
-	function onClickedFunc() {
-		if (root.state == "") {
-			pressedAnimation.restart()
-			controlCenter.visible = true
-		} else {
-			root.state = ""
-			revertAnimation.restart()
-			controlCenter.visible = false
-		}
-	}
-	SequentialAnimation {
-		id: pressedAnimation	
-		running: false
-		ParallelAnimation {
-			NumberAnimation { target: volumeIcon; property: "anchors.verticalCenterOffset"; to: 27; duration: 150; easing.type: Easing.OutCubic }
-			NumberAnimation { target: wifiIcon; property: "anchors.verticalCenterOffset"; to: -27; duration: 150; easing.type: Easing.OutCubic }
-		}
-		PropertyAction { target: root; property: "state"; value: "pressed" }
-	}
-	SequentialAnimation {
-		id: revertAnimation
-		running: false
-		ParallelAnimation {
-			NumberAnimation { target: volumeIcon; property: "anchors.verticalCenterOffset"; to: 15; duration: 150; easing.type: Easing.OutCubic }
-			NumberAnimation { target: wifiIcon; property: "anchors.verticalCenterOffset"; to: -15; duration: 150; easing.type: Easing.OutCubic }
-		}
-	}
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        hoverEnabled: true
+        onClicked: onClickedFunc()
+    }
+    function onClickedFunc() {
+        if (root.state == "") {
+            pressedAnimation.restart();
+            controlCenter.show();
+        } else {
+            root.state = "";
+            revertAnimation.restart();
+            controlCenter.hide();
+        }
+    }
+    SequentialAnimation {
+        id: pressedAnimation
+        running: false
+        ParallelAnimation {
+            NumberAnimation {
+                target: volumeIcon
+                property: "anchors.verticalCenterOffset"
+                to: 27
+                duration: 150
+                easing.type: Easing.OutCubic
+            }
+			OpacityAnimator {
+				target: volumeIcon
+				to: 0
+				duration: 150
+				easing.type: Easing.OutCubic
+			}
+            NumberAnimation {
+                target: wifiIcon
+                property: "anchors.verticalCenterOffset"
+                to: -27
+                duration: 150
+                easing.type: Easing.OutCubic
+            }
+			OpacityAnimator {
+				target: wifiIcon
+				to: 0
+				duration: 150
+				easing.type: Easing.OutCubic
+			}
+			OpacityAnimator {
+				target: batteryBrightnessIcon
+				to: 0
+				duration: 150
+				easing.type: Easing.OutCubic
+			}
+        }
+        PropertyAction {
+            target: root
+            property: "state"
+            value: "pressed"
+        }
+    }
+    SequentialAnimation {
+        id: revertAnimation
+        running: false
+        ParallelAnimation {
+            NumberAnimation {
+                target: volumeIcon
+                property: "anchors.verticalCenterOffset"
+                to: 15
+                duration: 150
+                easing.type: Easing.OutCubic
+            }
+            NumberAnimation {
+                target: wifiIcon
+                property: "anchors.verticalCenterOffset"
+                to: -15
+                duration: 150
+                easing.type: Easing.OutCubic
+            }
+        }
+    }
 
-	ControlCenter { id: controlCenter }
+    ControlCenter {
+        id: controlCenter
+    }
 }
