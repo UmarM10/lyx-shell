@@ -15,9 +15,12 @@ Rectangle {
 	implicitHeight: 65
 	
 	radius: 12
-	color: Colors.primaryContainerVariant
+	color: Logic.getBackgroundColor()
 	border.width: 2
-	border.color: Colors.primaryContainer
+	border.color: Colors.primaryContainer 
+
+	Behavior on color { ColorAnimation { duration: 100 } }
+	Behavior on border.color { ColorAnimation { duration: 100 } }
 
 	// Volume Icon
 	MaterialIcon {
@@ -49,6 +52,7 @@ Rectangle {
 	}
 	// Charging Icon
 	Rectangle {
+		id: chargingIcon
 		visible: UPower.displayDevice.state == UPowerDeviceState.Charging ? true : false
 		x: 3
 		y: 30
@@ -77,5 +81,63 @@ Rectangle {
 		color: Colors.primary
 
 		iconId: "network-wifi"
+	}
+
+	MaterialIcon {
+		id: closeIcon
+		anchors.horizontalCenter: parent.horizontalCenter
+		anchors.verticalCenter: parent.verticalCenter
+		height: 20
+		width: 20
+		color: Colors.primary
+		iconId: "close.svg"
+		visible: false
+	}
+
+	states: [
+		State {
+			name: "pressed"
+			PropertyChanges {
+				volumeIcon { visible: false; }
+				batteryBrightnessIcon { visible: false; }
+				chargingIcon { visible: false; }
+				wifiIcon { visible: false; }
+				closeIcon { visible: true; }
+			}
+		}
+	]
+	state: ""
+
+	MouseArea {
+		id: mouseArea
+		anchors.fill: parent
+		hoverEnabled: true
+		onClicked: onClickedFunc()
+	}
+	function onClickedFunc() {
+		if (root.state == "")
+			pressedAnimation.restart()
+		else
+			root.state = ""
+	}
+	SequentialAnimation {
+		id: pressedAnimation	
+		running: false
+		ParallelAnimation {
+			NumberAnimation { target: volumeIcon; property: "scale"; to: 0.75; duration: 75; easing.type: Easing.OutQuad }
+			NumberAnimation { target: wifiIcon; property: "scale"; to: 0.75; duration: 75; easing.type: Easing.OutQuad }
+			NumberAnimation { target: batteryBrightnessIcon; property: "scale"; to: 0.75; duration: 75; easing.type: Easing.OutQuad }
+		}
+		ParallelAnimation {
+			NumberAnimation { target: volumeIcon; property: "anchors.verticalCenterOffset"; to: 27; duration: 150; easing.type: Easing.OutCubic }
+			NumberAnimation { target: wifiIcon; property: "anchors.verticalCenterOffset"; to: -27; duration: 150; easing.type: Easing.OutCubic }
+		}
+		PropertyAction { target: root; property: "state"; value: "pressed" }
+		// Reset
+		PropertyAction { target: volumeIcon; property: "anchors.verticalCenterOffset"; value: 15 }
+		PropertyAction { target: volumeIcon; property: "scale"; value: 1 }
+		PropertyAction { target: wifiIcon; property: "anchors.verticalCenterOffset"; value: -15 }
+		PropertyAction { target: wifiIcon; property: "scale"; value: 1 }
+		PropertyAction { target: batteryBrightnessIcon; property: "scale"; value: 1 }
 	}
 }

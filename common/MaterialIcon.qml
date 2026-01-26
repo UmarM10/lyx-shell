@@ -22,4 +22,5 @@ Image {
 	}
 
     onSourceChanged: iconSwapAnimation.restart()
+	onVisibleChanged: iconSwapAnimation.restart()
 }
