@@ -11,12 +11,12 @@ PanelWindow {
         top: true
         bottom: true
     }
-	margins {
+    margins {
         left: 5
         top: 5
         bottom: 5
-		right: 5
-	}
+        right: 5
+    }
 
     implicitWidth: 45
     color: "transparent"
@@ -24,55 +24,55 @@ PanelWindow {
     Rectangle {
         id: background
         color: Colors.background
-		opacity: 0.95
+        opacity: 0.95
         radius: 10
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         anchors.fill: parent
 
-        Column {
-            id: startOfBar
-            anchors {
-                top: parent.top
-                topMargin: 10
-                horizontalCenter: parent.horizontalCenter
-            }
+		Column {
+			id: startOfBar
+			anchors {
+				top: parent.top
+				topMargin: 10
+				horizontalCenter: parent.horizontalCenter
+			}
 
-            NotificationsIcon {}
-        }
+			NotificationsIcon {}
+		}
 
-        Column {
-            id: centerOfBar
-            anchors {
-                centerIn: parent
-                horizontalCenter: parent.horizontalCenter
-            }
-            spacing: 4.5
+		Column {
+			id: centerOfBar
+			anchors {
+				centerIn: parent
+				horizontalCenter: parent.horizontalCenter
+			}
+			spacing: 4.5
 
-            Workspaces {}
-        }
+			Workspaces {}
+		}
 
-        Column {
-            id: endOfBar
-            anchors {
-                bottom: parent.bottom
-                bottomMargin: 10
-                horizontalCenter: parent.horizontalCenter
-            }
-            spacing: 5
-            
-            TimeButton {}
+		Column {
+			id: endOfBar
+			anchors {
+				bottom: parent.bottom
+				bottomMargin: 10
+				horizontalCenter: parent.horizontalCenter
+			}
+			spacing: 5
 
-            Rectangle {
-                anchors.horizontalCenter: parent.horizontalCenter
-                implicitHeight: 2
-                implicitWidth: 28
-                radius: 25
-                color: Colors.primary
-            }
+			TimeButton {}
+
+			Rectangle {
+				anchors.horizontalCenter: parent.horizontalCenter
+				implicitHeight: 2
+				implicitWidth: 28
+				radius: 25
+				color: Colors.primary
+			}
 
 			ControlsSection {}
-        }
+		}	
     }
 }

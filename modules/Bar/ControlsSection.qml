@@ -1,10 +1,11 @@
-import Quickshell
+// import Quickshell
 import Quickshell.Services.Pipewire
 import Quickshell.Services.UPower
 import QtQuick
 
 import qs
 import qs.common
+import qs.modules
 
 import "./js/controls_bar_section.js" as Logic
 
@@ -103,6 +104,7 @@ Rectangle {
 				chargingIcon { visible: false; }
 				wifiIcon { visible: false; }
 				closeIcon { visible: true; }
+				root { color: Colors.primaryContainer; border.color: Colors.primary }
 			}
 		}
 	]
@@ -115,29 +117,32 @@ Rectangle {
 		onClicked: onClickedFunc()
 	}
 	function onClickedFunc() {
-		if (root.state == "")
+		if (root.state == "") {
 			pressedAnimation.restart()
-		else
+			controlCenter.visible = true
+		} else {
 			root.state = ""
+			revertAnimation.restart()
+			controlCenter.visible = false
+		}
 	}
 	SequentialAnimation {
 		id: pressedAnimation	
 		running: false
 		ParallelAnimation {
-			NumberAnimation { target: volumeIcon; property: "scale"; to: 0.75; duration: 75; easing.type: Easing.OutQuad }
-			NumberAnimation { target: wifiIcon; property: "scale"; to: 0.75; duration: 75; easing.type: Easing.OutQuad }
-			NumberAnimation { target: batteryBrightnessIcon; property: "scale"; to: 0.75; duration: 75; easing.type: Easing.OutQuad }
-		}
-		ParallelAnimation {
 			NumberAnimation { target: volumeIcon; property: "anchors.verticalCenterOffset"; to: 27; duration: 150; easing.type: Easing.OutCubic }
 			NumberAnimation { target: wifiIcon; property: "anchors.verticalCenterOffset"; to: -27; duration: 150; easing.type: Easing.OutCubic }
 		}
 		PropertyAction { target: root; property: "state"; value: "pressed" }
-		// Reset
-		PropertyAction { target: volumeIcon; property: "anchors.verticalCenterOffset"; value: 15 }
-		PropertyAction { target: volumeIcon; property: "scale"; value: 1 }
-		PropertyAction { target: wifiIcon; property: "anchors.verticalCenterOffset"; value: -15 }
-		PropertyAction { target: wifiIcon; property: "scale"; value: 1 }
-		PropertyAction { target: batteryBrightnessIcon; property: "scale"; value: 1 }
 	}
+	SequentialAnimation {
+		id: revertAnimation
+		running: false
+		ParallelAnimation {
+			NumberAnimation { target: volumeIcon; property: "anchors.verticalCenterOffset"; to: 15; duration: 150; easing.type: Easing.OutCubic }
+			NumberAnimation { target: wifiIcon; property: "anchors.verticalCenterOffset"; to: -15; duration: 150; easing.type: Easing.OutCubic }
+		}
+	}
+
+	ControlCenter { id: controlCenter }
 }

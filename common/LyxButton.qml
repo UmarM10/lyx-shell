@@ -1,4 +1,4 @@
-import Quickshell
+// import Quickshell
 import QtQuick
 
 import qs
