@@ -1,11 +1,13 @@
 import QtQuick
 import Qt5Compat.GraphicalEffects
 
+import qs
+
 Image {
     id: root
     sourceSize.width: width
     sourceSize.height: height
-	source: `../../icons/${iconId}`
+	source: `${Info.projectRoot}/assets/${iconId}`
 
 	required property string iconId
 	property color color: "white"

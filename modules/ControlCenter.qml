@@ -4,6 +4,7 @@ import QtQuick
 import Qt5Compat.GraphicalEffects
 
 import qs
+import qs.common
 
 // import qs.modules.ControlCenter
 
@@ -11,11 +12,12 @@ PopupWindow {
     id: root
     visible: false
     color: "transparent"
-    implicitWidth: 315
+    implicitWidth: 355
     implicitHeight: 450
     anchor.window: rootPanel
-    anchor.rect.x: 45
+    anchor.rect.x: 5
     anchor.rect.y: 585
+	mask: Region { item: background }
 
     function show() {
         showAnimation.restart();
@@ -26,12 +28,11 @@ PopupWindow {
 
     Rectangle {
         id: background
-        // anchors.fill: parent
         implicitWidth: 300
         implicitHeight: 450
         anchors.bottom: parent.bottom
-        x: 15
         color: Colors.background
+		opacity: 0.0
         radius: 15
 
         SequentialAnimation {
@@ -42,42 +43,39 @@ PopupWindow {
                 property: "visible"
                 value: true
             }
-            PropertyAction {
-                target: background
-                property: "implicitHeight"
-                value: 50
-            }
-            PropertyAction {
-                target: background
-                property: "x"
-                value: 0
-            }
-            ParallelAnimation {
-                NumberAnimation {
-                    target: background
-                    property: "x"
-                    to: 15
-                    duration: 300
-                    easing.type: Easing.OutCubic
-                }
-                NumberAnimation {
-                    target: background
-                    property: "implicitHeight"
-                    to: 450
-                    duration: 250
-                    easing.type: Easing.OutCubic
-                }
-            }
+			ParallelAnimation {
+				NumberAnimation {
+					target: background
+					property: "x"
+					to: 55
+					duration: 300
+					easing.type: Easing.OutCubic
+				}
+				OpacityAnimator {
+					target: background
+					to: 1.0
+					duration: 300
+					easing.type: Easing.OutCubic
+				}
+			}
         }
         SequentialAnimation {
             id: hideAnimation
-            NumberAnimation {
-                target: background
-                property: "implicitHeight"
-                to: 0
-                duration: 250
-                easing.type: Easing.OutCubic
-            }
+			ParallelAnimation {
+				NumberAnimation {
+					target: background
+					property: "x"
+					to: 15
+					duration: 250
+					easing.type: Easing.OutCubic
+				}
+				OpacityAnimator {
+					target: background
+					to: 0.0
+					duration: 250
+					easing.type: Easing.OutCubic
+				}
+			}
             PropertyAction {
                 target: root
                 property: "visible"
@@ -118,7 +116,7 @@ PopupWindow {
 
 			Row {
 				anchors.left: parent.left
-				anchors.leftMargin: 10
+				anchors.leftMargin: 8
 				anchors.verticalCenter: parent.verticalCenter
 				spacing: 4
 
@@ -152,7 +150,7 @@ PopupWindow {
 			
 			Row {
 				anchors.right: parent.right
-				anchors.rightMargin: 10
+				anchors.rightMargin: 8
 				anchors.verticalCenter: parent.verticalCenter
 				spacing: 4
 
@@ -160,12 +158,26 @@ PopupWindow {
 					id: uptimeText
 					text: uptimeCollector.text
 					color: Colors.primary
+					anchors.verticalCenter: parent.verticalCenter
 					font {
 						family: "Figtree"
 						pixelSize: 10
 						weight: 100
 					}
 				}
+				LyxButton {
+					id: powerButton
+					implicitWidth: 25
+					implicitHeight: 25
+					MaterialIcon {
+						iconId: "plug.svg"
+						width: 21
+						height: 21
+						color: powerButton.foregroundColor
+						anchors.horizontalCenter: parent.horizontalCenter
+						anchors.verticalCenter: parent.verticalCenter
+					}
+				} 
 			}
 		}
     }

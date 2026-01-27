@@ -4,5 +4,6 @@ import QtQuick
 import qs.modules
 
 ShellRoot {
+	id: rootShell
 	Bar{}
 }
