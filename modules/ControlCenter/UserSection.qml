@@ -1,3 +1,4 @@
+import Quickshell.Widgets
 import Quickshell.Io
 import QtQuick
 import Qt5Compat.GraphicalEffects
@@ -41,20 +42,15 @@ Rectangle {
 		anchors.leftMargin: 8
 		anchors.verticalCenter: parent.verticalCenter
 		spacing: 4
-
-		Image {
-			id: profilePicture
-			source: `/var/lib/AccountsService/icons/${usernameCollector.text.slice(0, -1)}`				
-			anchors.verticalCenter: parent.verticalCenter
-			sourceSize.width: 21
-			sourceSize.height: 21
-			layer.enabled: true
-			layer.effect: OpacityMask {
-				maskSource: Rectangle {
-					width: profilePicture.sourceSize.width
-					height: profilePicture.height
-					radius: 7
-				}
+		
+		ClippingWrapperRectangle {
+			radius: 7
+			Image {
+				id: profilePicture
+				source: `/var/lib/AccountsService/icons/${usernameCollector.text.slice(0, -1)}`				
+				anchors.verticalCenter: parent.verticalCenter
+				sourceSize.width: 21
+				sourceSize.height: 21
 			}
 		}
 		LyxText {

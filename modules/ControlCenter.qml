@@ -16,7 +16,7 @@ PopupWindow {
     implicitHeight: 450
     anchor.window: rootPanel
     anchor.rect.x: 5
-    anchor.rect.y: 585
+    anchor.rect.y: 620
 	mask: Region { item: background }
 
     function show() {
