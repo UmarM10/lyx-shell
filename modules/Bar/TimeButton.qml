@@ -2,6 +2,7 @@ import QtQuick
 import Quickshell
 
 import qs.common
+import qs.config
 
 LyxButton {
 	id: root
@@ -20,8 +21,8 @@ LyxButton {
 		horizontalAlignment: Text.AlignHCenter
 		text: Qt.formatDateTime(clock.date, "hh\nmm AP").slice(0, 5)
 		font.pixelSize: 20
-		font.family: "SF Pro Display"
-		font.weight: 700
+		font.family: TextConfig.barClockFontFamily
+		font.weight: 600
 		font.letterSpacing: 0.3
 		color: root.foregroundColor
 	}
