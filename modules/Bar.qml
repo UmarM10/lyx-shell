@@ -5,27 +5,29 @@ import qs
 import qs.modules.Bar
 
 PanelWindow {
-    id: rootPanel
+    id: barPanel
     anchors {
         left: true
         top: true
         bottom: true
     }
-    margins {
-        left: 5
-        top: 5
-        bottom: 5
-        right: 5
-    }
+    // margins {
+    //     left: 5
+    //     top: 5
+    //     bottom: 5
+    //     right: 5
+    // }
 
-    implicitWidth: 45
+    implicitWidth: 55
     color: "transparent"
+
+	property alias controlCenter: controlsSection.controlCenter
 
     Rectangle {
         id: background
         color: Colors.background
-        opacity: 0.95
-        radius: 10
+        // opacity: 0.95
+        // radius: 10
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
@@ -72,7 +74,7 @@ PanelWindow {
 				color: Colors.primary
 			}
 
-			ControlsSection {}
+			ControlsSection { id: controlsSection }
 		}	
     }
 }

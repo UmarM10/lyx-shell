@@ -5,5 +5,6 @@ import qs.modules
 
 ShellRoot {
 	id: rootShell
-	Bar{}
+	// Bar {}
+	Layout {}
 }

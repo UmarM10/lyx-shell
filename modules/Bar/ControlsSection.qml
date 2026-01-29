@@ -20,6 +20,8 @@ Rectangle {
     border.width: 2
     border.color: Colors.primaryContainer
 
+	property var controlCenter
+
     Behavior on color {
         ColorAnimation {
             duration: 100
@@ -183,7 +185,7 @@ Rectangle {
 			OpacityAnimator {
 				target: wifiIcon
 				to: 0
-				duration: 150
+				duration: 150 
 				easing.type: Easing.OutCubic
 			}
 			OpacityAnimator {
@@ -220,7 +222,7 @@ Rectangle {
         }
     }
 
-    ControlCenter {
-        id: controlCenter
-    }
+    // ControlCenter {
+    //     id: controlCenter
+    // }
 }

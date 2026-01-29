@@ -3,7 +3,7 @@ pragma Singleton
 import QtQuick
 
 Item {
-	id: projectInfo
+	id: shellInfo
 
 	readonly property url projectRoot: Qt.resolvedUrl(".")
 }
