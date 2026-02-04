@@ -5,6 +5,7 @@ import QtQuick
 
 import qs
 import qs.common
+import qs.services
 
 ClippingRectangle {
 	id: root
@@ -25,7 +26,6 @@ ClippingRectangle {
 		id: showAnimation
 		running: false
 		
-		// PropertyAction { target: root; property: "implicitHeight"; value: 0 }
 		PropertyAction { target: icon; property: "opacity"; value: 1 }
 		PropertyAction { target: root; property: "visible"; value: true }
 		NumberAnimation {
@@ -69,10 +69,16 @@ ClippingRectangle {
 
 		MaterialIcon {
 			anchors.centerIn: parent
-			iconId: "volume-low-solid-full.svg"
+			iconId: Audio.iconId
 			color: icon.foregroundColor
 			width: 21
 			height: 21
+		}
+
+		onClicked: {
+			if (Audio.defaultSinkAudio) {
+				Audio.defaultSinkAudio.muted = !Audio.defaultSinkAudio.muted
+			}
 		}
 	}
 

@@ -5,10 +5,10 @@ import QtQuick.Shapes
 import qs
 // import qs.common
 
-// Variants {
-	// model: Quickshell.screens
+Variants {
+	model: Quickshell.screens
 
-	// delegate: Component {
+	delegate: Component {
 		PanelWindow {
 			id: rootOverlayPanel
 			mask: Region { 
@@ -16,13 +16,13 @@ import qs
 				Region { item: osd }
 			}
 
-			// required property var modelData
+			required property var modelData
 
 			anchors {
 				top: true; bottom: true; left: true; right: true
 			}
 			color: "transparent"
-			// screen: modelData
+			screen: modelData
 
 			Rectangle {
 				id: background	
@@ -64,9 +64,9 @@ import qs
 
 			Bar { 
 				id: bar
-				// screen: rootOverlayPanel.modelData
+				screen: rootOverlayPanel.modelData
 				controlCenter: controlCenter
 			}
 		}
-	// }
-// }
+	}
+}

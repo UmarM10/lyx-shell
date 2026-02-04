@@ -6,6 +6,7 @@ import QtQuick
 import qs
 import qs.common
 import qs.modules
+import qs.services
 
 import "./js/controls_bar_section.js" as Logic
 
@@ -42,12 +43,7 @@ Rectangle {
         height: 19
         width: 19
         color: Colors.primary
-
-        PwObjectTracker {
-            objects: Pipewire.nodes.values
-        }
-
-        iconId: Logic.getAudioIconPath()
+        iconId: Audio.iconId
     }
 
     // Battery/Brightness Icon
@@ -58,13 +54,12 @@ Rectangle {
         height: 19
         width: 19
         color: Colors.primary
-
-        iconId: Logic.getBatteryIconPath()
+        iconId: Battery.iconId
     }
     // Charging Icon
     Rectangle {
         id: chargingIcon
-        visible: UPower.displayDevice.state == UPowerDeviceState.Charging ? true : false
+        visible: Battery.defaultBattery.state == UPowerDeviceState.Charging ? true : false
         x: 3
         y: 30
         radius: 20

@@ -21,7 +21,7 @@ Rectangle {
         id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
-		onClicked: clicked()
+		onClicked: root.clicked()
     }
 
 	// Get Background Color
