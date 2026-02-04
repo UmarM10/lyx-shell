@@ -9,8 +9,8 @@ import qs.modules.ControlCenter
 ClippingRectangle {
 	id: root
 	visible: false
-	implicitWidth: 300	
-	implicitHeight: 450
+	implicitWidth: 0	
+	implicitHeight: 0
 	anchors.bottom: parent.bottom
 	anchors.bottomMargin: 10
 	anchors.left: parent.left
@@ -33,20 +33,20 @@ ClippingRectangle {
 				target: root
 				property: "implicitWidth"
 				to: 300
-				duration: 300
+				duration: 200
 				easing.type: Easing.OutCirc
 			}
 			NumberAnimation {
 				target: root
 				property: "implicitHeight"
 				to: 450
-				duration: 300
+				duration: 200
 				easing.type: Easing.OutCirc
 			}
 			OpacityAnimator {
 				target: root
 				to: 1.0
-				duration: 200
+				duration: 50
 			}
 		}
 	}
@@ -72,7 +72,7 @@ ClippingRectangle {
 			OpacityAnimator {
 				target: root
 				to: 0
-				duration: 300
+				duration: 100
 			}
 		}
 		PropertyAction {
