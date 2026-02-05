@@ -8,6 +8,7 @@ import qs.common
 
 // Logged in user with uptime and power button	
 Rectangle {
+	id: root
 	anchors.horizontalCenter: parent.horizontalCenter
 	anchors.top: parent.top
 	anchors.topMargin: 8
@@ -15,6 +16,8 @@ Rectangle {
 	implicitHeight: 32
 	color: Colors.primaryContainer
 	radius: 12
+
+	property var powerModal
 	
 	Process {
 		// Get Username
@@ -93,6 +96,8 @@ Rectangle {
 				anchors.horizontalCenter: parent.horizontalCenter
 				anchors.verticalCenter: parent.verticalCenter
 			}
-		} 
+
+			onClicked: root.powerModal.show()
+		}
 	}
 }

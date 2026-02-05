@@ -28,16 +28,18 @@ Rectangle {
 	function getBackgroundColor() {
 		if (mouseArea.containsPress)
 			return Colors.primaryContainerVariant;
-		if (mouseArea.containsMouse)
+		else if (mouseArea.containsMouse)
 			return Colors.primary
 		else
 			return "transparent";
 	}
 	// Get Foreground Color
 	function getForegroundColor() {
-		if (mouseArea.containsMouse)
+		if (mouseArea.containsPress)
+			return Colors.primaryContainer;
+		else if (mouseArea.containsMouse)
 			return Colors.background;
-		else
-			return Colors.primary;
+		else 
+			return Colors.primary
 	}
 }

@@ -3,7 +3,7 @@ import Quickshell.Widgets
 import QtQuick 
 
 import qs 
-// import qs.common 
+import qs.common 
 import qs.modules.ControlCenter
 
 ClippingRectangle {
@@ -17,6 +17,7 @@ ClippingRectangle {
 	color: Colors.background
 	opacity: 0.0
 	topRightRadius: 15
+	bottomLeftRadius: 18
 
 	function show() { showAnimation.restart() }
 	function hide() { hideAnimation.restart() }
@@ -28,8 +29,8 @@ ClippingRectangle {
 		PropertyAction { target: root; property: "implicitWidth"; value: 0 }
 		PropertyAction { target: root; property: "implicitHeight"; value: 0 }
 		PropertyAction { target: root; property: "visible"; value: true }
-		ParallelAnimation {
-			NumberAnimation {
+		ParallelAnimation { 
+			NumberAnimation { 
 				target: root
 				property: "implicitWidth"
 				to: 300
@@ -82,5 +83,6 @@ ClippingRectangle {
 		}
 	}
 	
-	UserSection {}
+	UserSection { id: userSection; powerModal: powerModal }
+ 	PowerModal { id: powerModal }
 }
