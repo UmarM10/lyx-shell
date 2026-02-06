@@ -107,11 +107,11 @@ ClippingRectangle {
 		implicitWidth: 230
 		implicitHeight: 30
 		radius: 10
-		color: Colors.primaryContainer
+		color: Colors.primaryContainerVariant
 
 		Rectangle {
 			id: leftActiveTrack
-			color: Colors.primaryContainerVariant
+			color: Colors.primaryContainer
 			anchors.right: currentVolumeRect.left
 			anchors.rightMargin: -5
 			implicitHeight: 30

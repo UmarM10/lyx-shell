@@ -3,7 +3,9 @@ import QtQuick
 import QtQuick.Shapes
 
 import qs
-// import qs.common
+import qs.common
+
+pragma ComponentBehavior: Bound
 
 Variants {
 	model: Quickshell.screens
@@ -59,7 +61,44 @@ Variants {
 				}
 
 				ControlCenter { id: controlCenter }
+				Corner {
+					target: controlCenter 
+					corner: "bottomLeft"
+					radius: 20
+					color: Colors.background
+
+					anchors.bottom: target.top
+					anchors.left: target.left
+				}
+				Corner {
+					target: controlCenter 
+					corner: "bottomLeft" 
+					radius: 15
+					color: Colors.background
+
+					anchors.bottom: target.bottom
+					anchors.left: target.right
+				}
+
 				OSD { id: osd }
+				Corner {
+					target: osd
+					corner: "topRight"
+					color: Colors.background
+					radius: 20
+
+					anchors.top: target.top
+					anchors.right: target.left
+				}
+				Corner {
+					target: osd
+					corner: "topLeft"
+					color: Colors.background
+					radius: 20
+
+					anchors.top: target.top
+					anchors.left: target.right
+				}
 			}
 
 			Bar { 
