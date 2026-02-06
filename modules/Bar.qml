@@ -2,6 +2,7 @@ import Quickshell
 import QtQuick
 
 import qs
+import qs.common
 import qs.modules.Bar
 
 PanelWindow {
@@ -66,13 +67,7 @@ PanelWindow {
 
 			TimeButton {}
 
-			Rectangle {
-				anchors.horizontalCenter: parent.horizontalCenter
-				implicitHeight: 2
-				implicitWidth: 28
-				radius: 25
-				color: Colors.primary
-			}
+			Separator { anchors.horizontalCenter: parent.horizontalCenter }
 
 			ControlsSection { id: controlsSection }
 		}	
