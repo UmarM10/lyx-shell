@@ -34,20 +34,21 @@ ClippingRectangle {
 				target: root
 				property: "implicitWidth"
 				to: 300
-				duration: 200
-				easing.type: Easing.OutCirc
+				duration: 300
+				easing.type: Easing.OutExpo
 			}
 			NumberAnimation {
 				target: root
 				property: "implicitHeight"
 				to: 450
-				duration: 200
-				easing.type: Easing.OutCirc
+				duration: 300
+				easing.type: Easing.OutExpo
 			}
 			OpacityAnimator {
 				target: root
 				to: 1.0
 				duration: 50
+				easing.type: Easing.OutExpo
 			}
 		}
 	}
@@ -60,20 +61,21 @@ ClippingRectangle {
 				target: root
 				property: "implicitWidth"
 				to: 0
-				duration: 300
-				easing.type: Easing.OutQuad
+				duration: 150
+				easing.type: Easing.InExpo
 			}
 			NumberAnimation {
 				target: root
 				property: "implicitHeight"
 				to: 0
-				duration: 300
-				easing.type: Easing.OutQuad
+				duration: 150
+				easing.type: Easing.InExpo
 			}
 			OpacityAnimator {
 				target: root
 				to: 0
-				duration: 100
+				duration: 150
+				easing.type: Easing.InExpo
 			}
 		}
 		PropertyAction {
@@ -83,6 +85,10 @@ ClippingRectangle {
 		}
 	}
 	
-	UserSection { id: userSection; powerModal: powerModal }
- 	PowerModal { id: powerModal }
+	Item {
+		id: content
+		anchors.fill: parent
+		UserSection { id: userSection; powerModal: powerModal }
+		PowerModal { id: powerModal }
+	}
 }

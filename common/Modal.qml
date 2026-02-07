@@ -10,18 +10,27 @@ Rectangle {
 	color: "transparent"
 	visible: false
 
-	function show() { showAnimation.restart() }
-	function hide() { hideAnimation.restart() }
+	signal shown()
+	signal hidden()
+	function show() { showAnimation.restart(); shown() }
+	function hide() { hideAnimation.restart(); hidden() }
+
+	property int modalWidth: parent.width / 1.2
+	property int modalHeight: parent.height / 1.2
+
+	MouseArea { anchors.fill: parent; hoverEnabled: true }
 
 	Rectangle {
 		id: background
 		anchors.fill: parent
 		color: "black"
 		opacity: 0.8
+		radius: root.parent.radius
 
 		MouseArea {
 			id: backgroundMouseArea
 			anchors.fill: background
+			hoverEnabled: true
 			onClicked: hideAnimation.restart()
 		}
 	}
@@ -32,8 +41,8 @@ Rectangle {
 		id: foreground
 		anchors.centerIn: parent
 		color: Colors.background
-		implicitHeight: parent.height / 1.2
-		implicitWidth: parent.width / 1.2
+		implicitHeight: root.modalHeight
+		implicitWidth: root.modalWidth
 		radius: 20
 
 		MouseArea { id: foregroundMouseArea; anchors.fill: parent }
@@ -52,18 +61,20 @@ Rectangle {
 				target: foreground
 				property: "scale"
 				to: 1.0
-				duration: 200
-				easing.type: Easing.OutCirc
+				duration: 300
+				easing.type: Easing.OutExpo
 			}
 			OpacityAnimator {
 				target: foreground
 				to: 1.0
-				duration: 100
+				duration: 300
+				easing.type: Easing.OutExpo
 			}
 			OpacityAnimator {
 				target: background 
 				to: 0.8
-				duration: 200
+				duration: 300
+				easing.type: Easing.OutExpo
 			}
 		}
 	}
@@ -78,17 +89,19 @@ Rectangle {
 				property: "scale"
 				to: 0.3
 				duration: 200
-				easing.type: Easing.OutCubic
+				easing.type: Easing.InExpo
 			}
 			OpacityAnimator {
 				target: foreground
 				to: 0.0
 				duration: 200
+				easing.type: Easing.InExpo
 			}
 			OpacityAnimator {
 				target: background
 				to: 0.0
 				duration: 130
+				easing.type: Easing.InExpo
 			}
 		}
 		PropertyAction { target: root; property: "visible"; value: false }

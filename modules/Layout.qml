@@ -59,6 +59,25 @@ Variants {
 						}
 					}
 				}
+				// Virtual Rounded Screen
+				Corner {
+					target: background
+					corner: "topRight"
+					radius: 15
+					color: "black"
+
+					anchors.top: target.top
+					anchors.right: target.right
+				}
+				Corner {
+					target: background
+					corner: "bottomRight"
+					radius: 15
+					color: "black"
+
+					anchors.bottom: target.bottom
+					anchors.right: target.right
+				}
 
 				ControlCenter { id: controlCenter }
 				Corner {

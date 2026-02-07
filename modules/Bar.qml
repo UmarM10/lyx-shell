@@ -20,7 +20,7 @@ PanelWindow {
     // }
 
     implicitWidth: 55
-    color: "transparent"
+    color: "black"
 
 	property alias controlCenter: controlsSection.controlCenter
 
@@ -33,6 +33,8 @@ PanelWindow {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         anchors.fill: parent
+		topLeftRadius: 15
+		bottomLeftRadius: 15
 
 		Column {
 			id: startOfBar

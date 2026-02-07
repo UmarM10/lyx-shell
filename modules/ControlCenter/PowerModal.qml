@@ -114,6 +114,8 @@ Modal {
                         color: shutDownButton.foregroundColor
                     }
                 }
+
+				onClicked: shutDownConfirmationModal.show()
             }
 			Separator {
 				implicitWidth: parent.width
@@ -144,6 +146,8 @@ Modal {
                         color: restartButton.foregroundColor
                     }
                 }
+
+				onClicked: restartConfirmationModal.show()
             }
 			Separator {
 				implicitWidth: parent.width
@@ -174,6 +178,9 @@ Modal {
                         color: hibernateButton.foregroundColor
                     }
                 }
+				
+				Process { id: hibernateCommand; command: ["systemctl", "hibernate"] }
+				onClicked: hibernateCommand.running = true
             }
 			Separator {
 				implicitWidth: parent.width
@@ -194,7 +201,7 @@ Modal {
 				radius: 15
 				anchors.verticalCenter: parent.verticalCenter
 				implicitHeight: 80
-				implicitWidth: optionsBox.width / 2 - 5
+				implicitWidth: optionsBox.width / 2 - 11
 
 				Column {
 					anchors.centerIn: parent
@@ -213,13 +220,24 @@ Modal {
 						text: "Lock"
 					}
 				}
+
+				onClicked: lockScreenComingSoonModal.show()
 			}
+
+			Separator {
+				anchors.verticalCenter: parent.verticalCenter
+				orientation: "vertical"
+				thickness: 2
+				implicitHeight: 70
+				color: Colors.primaryContainer
+			}
+
 			LyxButton {
 				id: logOutButton 
 				radius: 15
 				anchors.verticalCenter: parent.verticalCenter
 				implicitHeight: 80
-				implicitWidth: optionsBox.width / 2 - 10
+				implicitWidth: optionsBox.width / 2 - 11
 
 				Column {
 					anchors.centerIn: parent
@@ -238,6 +256,217 @@ Modal {
 						text: "Log Out"
 					}
 				}
+
+				onClicked: logOutConfirmationModal.show()
+			}
+		}
+
+		Modal {
+			id: shutDownConfirmationModal
+			modalHeight: 150
+
+			LyxText {
+				anchors.centerIn: parent
+				anchors.verticalCenterOffset: -25
+				horizontalAlignment: Text.AlignHCenter
+				text: "Shutting down in\n60 seconds..."
+				font.pixelSize: 16
+			}
+
+			Row {
+				anchors.centerIn: parent
+				anchors.verticalCenterOffset: 25
+				spacing: 5
+
+				LyxButton {
+					implicitWidth: 75
+					implicitHeight: 25
+
+					LyxText {
+						anchors.centerIn: parent
+						text: "Cancel"
+						color: parent.foregroundColor
+					}
+
+					onClicked: {
+						shutDownTimer.stop()
+						shutDownConfirmationModal.hide()
+					}
+				}
+				LyxButton {
+					implicitWidth: 75
+					implicitHeight: 25
+
+					LyxText {
+						anchors.centerIn: parent
+						text: "Shut Down"
+						color: parent.foregroundColor
+					}
+
+					onClicked: {
+						shutDownTimer.stop()
+						shutDownConfirmationModal.hide()
+						shutDownCommand.running = true
+					}
+				}
+			}
+
+			Process { id: shutDownCommand; command: ["systemctl", "poweroff"] }
+
+			Timer {
+				id: shutDownTimer
+				interval: 60000
+				running: false 
+				repeat: false 
+				onTriggered: shutDownCommand.running = true
+			}
+			onShown: shutDownTimer.restart
+		}
+		Modal {
+			id: restartConfirmationModal 
+			modalHeight: 150
+
+			LyxText {
+				anchors.centerIn: parent
+				anchors.verticalCenterOffset: -25
+				horizontalAlignment: Text.AlignHCenter
+				text: "Restarting in\n60 seconds..."
+				font.pixelSize: 16
+			}
+
+			Row {
+				anchors.centerIn: parent
+				anchors.verticalCenterOffset: 25
+				spacing: 5
+
+				LyxButton {
+					implicitWidth: 75
+					implicitHeight: 25
+
+					LyxText {
+						anchors.centerIn: parent
+						text: "Cancel"
+						color: parent.foregroundColor
+					}
+
+					onClicked: {
+						restartTimer.stop()
+						restartConfirmationModal.hide()
+					}
+				}
+				LyxButton {
+					implicitWidth: 75
+					implicitHeight: 25
+
+					LyxText {
+						anchors.centerIn: parent
+						text: "Restart"
+						color: parent.foregroundColor
+					}
+
+					onClicked: {
+						restartTimer.stop()
+						restartConfirmationModal.hide()
+						restartCommand.running = true
+					}
+				}
+			}
+
+			Process { id: restartCommand; command: ["systemctl", "reboot"] }
+
+			Timer {
+				id: restartTimer
+				interval: 60000
+				running: false 
+				repeat: false 
+				onTriggered: restartCommand.running = true
+			}
+			onShown: restartTimer.restart
+		}
+		Modal {
+			id: logOutConfirmationModal 
+			modalHeight: 150
+
+			LyxText {
+				anchors.centerIn: parent
+				anchors.verticalCenterOffset: -25
+				horizontalAlignment: Text.AlignHCenter
+				text: "Logging out in\n60 seconds..."
+				font.pixelSize: 16
+			}
+
+			Row {
+				anchors.centerIn: parent
+				anchors.verticalCenterOffset: 25
+				spacing: 5
+
+				LyxButton {
+					implicitWidth: 75
+					implicitHeight: 25
+
+					LyxText {
+						anchors.centerIn: parent
+						text: "Cancel"
+						color: parent.foregroundColor
+					}
+
+					onClicked: {
+						logOutTimer.stop()
+						logOutConfirmationModal.hide()
+					}
+				}
+				LyxButton {
+					implicitWidth: 75
+					implicitHeight: 25
+
+					LyxText {
+						anchors.centerIn: parent
+						text: "Log Out"
+						color: parent.foregroundColor
+					}
+
+					onClicked: {
+						logOutTimer.stop()
+						logOutConfirmationModal.hide()
+						logOutCommand.running = true
+					}
+				}
+			}
+
+			Process { id: logOutCommand; command: ["loginctl", "terminate-user", "$USER"] }
+
+			Timer {
+				id: logOutTimer 
+				interval: 60000
+				running: false 
+				repeat: false 
+				onTriggered: logOutCommand.running = true
+			}
+			onShown: logOutTimer.restart
+		}
+
+		Modal {
+			id: lockScreenComingSoonModal
+			modalHeight: 150
+
+			LyxText {
+				anchors.centerIn: parent 
+				anchors.verticalCenterOffset: -25
+				text: "Lock Screen is still\na work in progress.\nCheck again soon!"
+				font.pixelSize: 14
+			}
+			LyxButton {
+				anchors.centerIn: parent
+				anchors.verticalCenterOffset: 25
+				implicitWidth: 50
+				implicitHeight: 25
+
+				LyxText {
+					anchors.centerIn: parent 
+					text: "Okay"
+					color: parent.foregroundColor
+				}
+				onClicked: lockScreenComingSoonModal.hide()
 			}
 		}
     }
