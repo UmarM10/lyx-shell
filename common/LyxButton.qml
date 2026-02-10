@@ -6,9 +6,6 @@ import qs
 Rectangle {
 	id: root
 	radius: 5
-	color: getBackgroundColor()
-
-	property color foregroundColor: getForegroundColor()
 
 	Behavior on color {
 		ColorAnimation {
@@ -16,6 +13,7 @@ Rectangle {
 			easing.type: Easing.OutQuad
 		}
 	}
+
 	signal clicked()
     MouseArea {
         id: mouseArea
@@ -24,22 +22,37 @@ Rectangle {
 		onClicked: root.clicked()
     }
 
-	// Get Background Color
-	function getBackgroundColor() {
+	// Set Background Color
+	color: {
 		if (mouseArea.containsPress)
 			return Colors.primaryContainerVariant;
 		else if (mouseArea.containsMouse)
-			return Colors.primary
+			return Colors.primary;
 		else
 			return "transparent";
 	}
-	// Get Foreground Color
-	function getForegroundColor() {
+
+	// Make foreground color available
+	property color foregroundColor: {
 		if (mouseArea.containsPress)
-			return Colors.primaryContainer;
+			return Colors.primary;
 		else if (mouseArea.containsMouse)
 			return Colors.background;
 		else 
-			return Colors.primary
+			return Colors.primary;
+	}
+
+	// Make foreground scale available
+	property real foregroundScale: {
+		if (mouseArea.containsPress)
+			return 0.75
+		else 
+			return 1.0
+	}
+	Behavior on foregroundScale {
+		NumberAnimation {
+			duration: root.foregroundScale == 1.0 ? 150 : 200
+			easing.type: root.foregroundScale == 1.0 ? Easing.OutExpo : Easing.OutQuad
+		}
 	}
 }

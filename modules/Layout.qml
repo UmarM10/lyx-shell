@@ -92,7 +92,7 @@ Variants {
 				Corner {
 					target: controlCenter 
 					corner: "bottomLeft" 
-					radius: 15
+					radius: 20
 					color: Colors.background
 
 					anchors.bottom: target.bottom

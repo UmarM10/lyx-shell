@@ -23,5 +23,6 @@ LyxButton {
 		font.family: TextConfig.barClockFontFamily
 		font.letterSpacing: 0.3
 		color: root.foregroundColor
+		scale: root.foregroundScale
 	}
 }

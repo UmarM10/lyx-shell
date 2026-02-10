@@ -10,9 +10,9 @@ import qs.common
 Rectangle {
 	id: root
 	anchors.horizontalCenter: parent.horizontalCenter
-	anchors.top: parent.top
-	anchors.topMargin: 8
-	implicitWidth: 285
+	// anchors.top: parent.top
+	// anchors.topMargin: 8
+	implicitWidth: parent.width - 15
 	implicitHeight: 32
 	color: Colors.primaryContainer
 	radius: 12
@@ -92,6 +92,7 @@ Rectangle {
 				iconId: "plug.svg"
 				width: 21
 				height: 21
+				scale: powerButton.foregroundScale
 				color: powerButton.foregroundColor
 				anchors.horizontalCenter: parent.horizontalCenter
 				anchors.verticalCenter: parent.verticalCenter

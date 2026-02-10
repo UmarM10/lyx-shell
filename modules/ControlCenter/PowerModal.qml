@@ -20,6 +20,7 @@ Modal {
         MaterialIcon {
             anchors.centerIn: parent
             color: backButton.foregroundColor
+			scale: backButton.foregroundScale
             iconId: "arrow-back.svg"
 			width: 26
 			height: 26

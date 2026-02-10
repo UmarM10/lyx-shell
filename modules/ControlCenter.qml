@@ -88,7 +88,14 @@ ClippingRectangle {
 	Item {
 		id: content
 		anchors.fill: parent
-		UserSection { id: userSection; powerModal: powerModal }
+
+		Column {
+			anchors.fill: parent
+			anchors.topMargin: 8
+			spacing: 8
+			UserSection { id: userSection; powerModal: powerModal }
+			SystemControlsSection { id: controlsSection }
+		}
 		PowerModal { id: powerModal }
 	}
 }
