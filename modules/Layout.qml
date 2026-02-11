@@ -5,8 +5,6 @@ import QtQuick.Shapes
 import qs
 import qs.common
 
-pragma ComponentBehavior: Bound
-
 Variants {
 	model: Quickshell.screens
 
@@ -63,7 +61,7 @@ Variants {
 				Corner {
 					target: background
 					corner: "topRight"
-					radius: 15
+					radius: 25
 					color: "black"
 
 					anchors.top: target.top
@@ -72,51 +70,11 @@ Variants {
 				Corner {
 					target: background
 					corner: "bottomRight"
-					radius: 15
+					radius: 25
 					color: "black"
 
 					anchors.bottom: target.bottom
 					anchors.right: target.right
-				}
-
-				ControlCenter { id: controlCenter }
-				Corner {
-					target: controlCenter 
-					corner: "bottomLeft"
-					radius: 20
-					color: Colors.background
-
-					anchors.bottom: target.top
-					anchors.left: target.left
-				}
-				Corner {
-					target: controlCenter 
-					corner: "bottomLeft" 
-					radius: 20
-					color: Colors.background
-
-					anchors.bottom: target.bottom
-					anchors.left: target.right
-				}
-
-				OSD { id: osd }
-				Corner {
-					target: osd
-					corner: "topRight"
-					color: Colors.background
-					radius: 20
-
-					anchors.top: target.top
-					anchors.right: target.left
-				}
-				Corner {
-					target: osd
-					corner: "topLeft"
-					color: Colors.background
-					radius: 20
-
-					anchors.top: target.top
-					anchors.left: target.right
 				}
 			}
 
@@ -125,6 +83,9 @@ Variants {
 				screen: rootOverlayPanel.modelData
 				controlCenter: controlCenter
 			}
+			OSD { id: osd }
+			ControlCenter { id: controlCenter }
+
 		}
 	}
 }

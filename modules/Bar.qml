@@ -27,14 +27,13 @@ PanelWindow {
     Rectangle {
         id: background
         color: Colors.background
-        // opacity: 0.95
-        // radius: 10
+       // opacity: 0.95
+ 		topLeftRadius: 20
+		bottomLeftRadius: 20
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         anchors.fill: parent
-		topLeftRadius: 15
-		bottomLeftRadius: 15
 
 		Column {
 			id: startOfBar
