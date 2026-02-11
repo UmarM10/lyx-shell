@@ -9,7 +9,7 @@ Rectangle {
 
 	Behavior on color {
 		ColorAnimation {
-			duration: 75
+			duration: 125
 			easing.type: Easing.OutQuad
 		}
 	}

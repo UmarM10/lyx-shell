@@ -60,6 +60,7 @@ Rectangle {
 			id: usernameText
 			anchors.verticalCenter: parent.verticalCenter
 			text: usernameCollector.text
+			elide: Text.ElideRight
 			color: Colors.primary
 			font {
 				pixelSize: 14

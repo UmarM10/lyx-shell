@@ -86,7 +86,7 @@ Rectangle {
         width: 19
         color: Colors.primary
 
-        iconId: "network-wifi"
+        iconId: Network.iconId
     }
 
     MaterialIcon {

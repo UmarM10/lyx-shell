@@ -13,10 +13,11 @@ Rectangle {
 	property real foregroundScale
 
 	signal clicked() 
+	signal rightClicked()
 
 	Behavior on color {
 		ColorAnimation {
-			duration: 75 
+			duration: 125
 			easing.type: Easing.OutQuad
 		}
 	}
@@ -25,9 +26,16 @@ Rectangle {
 		id: mouseArea
 		anchors.fill: parent 
 		hoverEnabled: true 
-		onClicked: {
-			root.clicked()
-			root.automaticallyToggle ? root.toggled = !root.toggled : null
+		acceptedButtons: Qt.LeftButton | Qt.RightButton
+		onClicked: (mouse) => onClickedHandler(mouse)
+
+		function onClickedHandler(mouse) {
+			if (mouse.button === Qt.LeftButton) {
+				root.clicked()
+				root.automaticallyToggle ? root.toggled = !root.toggled : null
+			} else {
+				root.rightClicked()
+			}
 		}
 	}
 

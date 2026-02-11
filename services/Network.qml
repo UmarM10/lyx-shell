@@ -12,21 +12,23 @@ Singleton {
     property int signalStrength: 0
     property bool isConnected: false
     property bool wifiEnabled: false
-    property string connectionType: "disconnected" // "wifi", "ethernet", "disconnected"
+    property string connectionType: "undefined" // "wifi", "ethernet", "disconnected"
     property bool wifiScanning: false
     // Available WiFi networks
     property var availableNetworks: []
 
-    property string icon: {
-        if(signalStrength >= 90){
-            return "signal_wifi_4_bar"
-        }
-        else if(signalStrength < 90 && signalStrength >=60){
-            return "network_wifi_3_bar"
-        }else if(signalStrength < 60 && signalStrength >= 30){
-            return "network_wifi_2_bar"
-        }
-        return "network_wifi_1_bar"
+    property string iconId: {
+		if (signalStrength >= 90) {
+            return "network-wifi.svg"
+        } else if (signalStrength < 90 && signalStrength >= 60) {
+            return "network-wifi-three-bars.svg"
+        } else if (signalStrength < 60 && signalStrength >= 30) {
+            return "network-wifi-two-bars.svg"
+        } else if (connectionType === "disconnected") {
+			return "network-wifi-disabled.svg"
+		} else {
+			return "hourglass.svg"
+		}
     }
 
     // Connect to a network

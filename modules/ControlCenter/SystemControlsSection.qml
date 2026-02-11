@@ -30,7 +30,7 @@ Rectangle {
 			anchors.left: parent.left 
 			anchors.leftMargin: 15
 			anchors.verticalCenter: parent.verticalCenter 
-			iconId: "network-wifi.svg"
+			iconId: Network.iconId
 			color: wifiToggle.foregroundColor
 			width: 21 
 			height: 21
@@ -41,7 +41,7 @@ Rectangle {
 			anchors.leftMargin: 45
 			anchors.verticalCenterOffset: wifiToggle.toggled ? -7 : 0
 			color: parent.foregroundColor 
-			text: "Wi-Fi"
+			text: "Network"
 			font.pixelSize: 14
 
 			Behavior on anchors.verticalCenterOffset {
