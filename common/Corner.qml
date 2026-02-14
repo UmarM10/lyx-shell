@@ -10,6 +10,7 @@ Shape {
 	required property string corner
 	property real radius: 20
 	property color color: Colors.background
+	property alias path: path
 	// Whether the corner is outside the target edge or not
 	// property bool outside
 

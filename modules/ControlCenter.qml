@@ -21,7 +21,7 @@ Item {
 		target: parent
 		corner: "bottomLeft"
 		radius: 20
-		color: Colors.background
+		color: powerModal.visible ? "black" : Colors.background
 
 		anchors.bottom: target.top
 		anchors.left: target.left
@@ -30,7 +30,7 @@ Item {
 		target: parent
 		corner: "bottomLeft" 
 		radius: 20
-		color: Colors.background
+		color: powerModal.visible ? "black" : Colors.background
 
 		anchors.bottom: target.bottom
 		anchors.left: target.right

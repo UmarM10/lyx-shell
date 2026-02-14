@@ -156,7 +156,7 @@ Item {
 				anchors.verticalCenter: parent.verticalCenter
 				color: Colors.primary
 
-				x: Pipewire.defaultAudioSink.audio.volume * 200
+				x: Audio.defaultSinkAudio.volume * 200
 				Behavior on x {
 					NumberAnimation {
 						duration: 100
@@ -169,7 +169,7 @@ Item {
 					anchors.centerIn: parent
 					font.pointSize: 12
 					font.weight: 600
-					text: Math.round(Pipewire.defaultAudioSink.audio.volume * 100)
+					text: Math.round(Audio.defaultSinkAudio.volume * 100)
 					color: Colors.background
 				}
 			}

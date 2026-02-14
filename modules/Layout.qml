@@ -78,6 +78,7 @@ Variants {
 				}
 			}
 
+
 			Bar { 
 				id: bar
 				screen: rootOverlayPanel.modelData
@@ -85,7 +86,6 @@ Variants {
 			}
 			OSD { id: osd }
 			ControlCenter { id: controlCenter }
-
 		}
 	}
 }

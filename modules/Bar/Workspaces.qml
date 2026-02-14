@@ -43,7 +43,7 @@ Repeater {
 		// Switching Animation
 		Behavior on implicitHeight {
 			NumberAnimation {
-				duration: 200
+				duration: 250
 				easing.type: Easing.OutQuad
 			}
 		}

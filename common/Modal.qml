@@ -17,6 +17,7 @@ Rectangle {
 
 	property int modalWidth: parent.width / 1.2
 	property int modalHeight: parent.height / 1.2
+	property int backgroundRadius: parent.radius
 
 	MouseArea { anchors.fill: parent; hoverEnabled: true }
 
@@ -25,7 +26,7 @@ Rectangle {
 		anchors.fill: parent
 		color: "black"
 		opacity: 0.8
-		radius: root.parent.radius
+		radius: root.backgroundRadius
 
 		MouseArea {
 			id: backgroundMouseArea
@@ -89,19 +90,19 @@ Rectangle {
 				property: "scale"
 				to: 0.3
 				duration: 200
-				easing.type: Easing.InExpo
+				easing.type: Easing.OutExpo
 			}
 			OpacityAnimator {
 				target: foreground
 				to: 0.0
 				duration: 200
-				easing.type: Easing.InExpo
+				easing.type: Easing.OutExpo
 			}
 			OpacityAnimator {
 				target: background
 				to: 0.0
 				duration: 130
-				easing.type: Easing.InExpo
+				easing.type: Easing.OutExpo
 			}
 		}
 		PropertyAction { target: root; property: "visible"; value: false }
