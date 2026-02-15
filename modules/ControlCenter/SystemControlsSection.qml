@@ -229,7 +229,7 @@ Rectangle {
 		Rectangle {
 			id: activeSlider 
 			anchors.top: sliderIndicator.verticalCenter
-			anchors.bottom: volumeSlider.bottom
+			// anchors.bottom: volumeSlider.bottom
 			color: Colors.primary
 			implicitWidth: parent.width 
 			implicitHeight: 200

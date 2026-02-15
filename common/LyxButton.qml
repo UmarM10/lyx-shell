@@ -6,6 +6,10 @@ import qs
 Rectangle {
 	id: root
 	radius: 5
+	color: backgroundColor
+
+	implicitWidth: 30
+	implicitHeight: 30
 
 	Behavior on color {
 		ColorAnimation {
@@ -23,9 +27,9 @@ Rectangle {
     }
 
 	// Set Background Color
-	color: {
+	property color backgroundColor: {
 		if (mouseArea.containsPress)
-			return Colors.primaryContainerVariant;
+			return Colors.topPrimary;
 		else if (mouseArea.containsMouse)
 			return Colors.primary;
 		else

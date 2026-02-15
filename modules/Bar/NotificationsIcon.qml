@@ -6,7 +6,7 @@ import qs.common
 LyxButton {
     id: root
     anchors.horizontalCenter: parent.horizontalCenter
-    implicitHeight: 25.5
+    implicitHeight: 30
     implicitWidth: 30
 
     MaterialIcon {

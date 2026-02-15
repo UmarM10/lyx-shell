@@ -37,6 +37,7 @@ PanelWindow {
 
 		Column {
 			id: startOfBar
+			spacing: 5
 			anchors {
 				top: parent.top
 				topMargin: 10
@@ -44,6 +45,7 @@ PanelWindow {
 			}
 
 			NotificationsIcon {}
+			SystemTray {}
 		}
 
 		Column {
