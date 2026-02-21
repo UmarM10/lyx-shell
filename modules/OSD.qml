@@ -18,7 +18,7 @@ Item {
 		target: parent
 		corner: "topRight"
 		color: Colors.background
-		opacity: root.opacity 
+		opacity: root.implicitHeight === 65 ? 1.0 : root.implicitHeight / 100 
 		visible: root.visible
 		radius: 20
 
@@ -29,7 +29,7 @@ Item {
 		target: parent
 		corner: "topLeft"
 		color: Colors.background
-		opacity: root.opacity
+		opacity: root.implicitHeight === 65 ? 1.0 : root.implicitHeight / 100
 		visible: root.visible
 		radius: 20
 
@@ -143,7 +143,7 @@ Item {
 				id: leftActiveTrack
 				color: Colors.primaryContainer
 				anchors.right: currentVolumeRect.left
-				anchors.rightMargin: -5
+				anchors.rightMargin: -10
 				implicitHeight: 30
 				implicitWidth: 230
 			}

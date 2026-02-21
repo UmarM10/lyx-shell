@@ -7,37 +7,37 @@ Singleton {
     id: colors
 
     // Primary Colors
-    property color primary: "#ffb4a2"
-    property color primaryLight: "#8f4b3a"
-    property color primaryDark: "#ffb4a2"
-    property color topPrimary: "#561f11"
-    property color primaryContainer: "#723425"
-    property color primaryContainerLight: "#ffdad2"
-    property color primaryContainerDark: "#723425"
-    property color primaryContainerVariant: "#321710"
-    property color topPrimaryContainer: "#ffdad2"
+    property color primary: "#8fd5af"
+    property color primaryLight: "#246a4b"
+    property color primaryDark: "#8fd5af"
+    property color topPrimary: "#003823"
+    property color primaryContainer: "#005235"
+    property color primaryContainerLight: "#aaf2ca"
+    property color primaryContainerDark: "#005235"
+    property color primaryContainerVariant: "#00422b"
+    property color topPrimaryContainer: "#aaf2ca"
 
     // Secondary Colors
-    property color secondary: "#e7bdb3"
-    property color topSecondary: "#442a23"
-    property color secondaryContainer: "#5d4038"
-    property color topSecondaryContainer: "#ffdad2"
+    property color secondary: "#b4ccbc"
+    property color topSecondary: "#203529"
+    property color secondaryContainer: "#364b3f"
+    property color topSecondaryContainer: "#d0e8d8"
 
     // Tertiary Colors
-    property color tertiary: "#dac58c"
-    property color topTertiary: "#3c2f04"
-    property color tertiaryContainer: "#544519"
-    property color topTertiaryContainer: "#f7e1a6"
+    property color tertiary: "#a4cddd"
+    property color topTertiary: "#063542"
+    property color tertiaryContainer: "#234c5a"
+    property color topTertiaryContainer: "#c0e9fa"
 
     // Backgrounds & Surfaces
-    property color background: "#1a110f"
-    property color topBackground: "#f1dfda"
-    property color surface: "#1a110f"
-    property color topSurface: "#f1dfda"
-    property color surfaceVariant: "#534340"
-    property color topSurfaceVariant: "#d8c2bd"
+    property color background: "#0f1511"
+    property color topBackground: "#dee4de"
+    property color surface: "#0f1511"
+    property color topSurface: "#dee4de"
+    property color surfaceVariant: "#404943"
+    property color topSurfaceVariant: "#c0c9c1"
     
     // Outlines
-    property color outline: "#a08c88"
-    property color outlineVariant: "#534340"
+    property color outline: "#8a938c"
+    property color outlineVariant: "#404943"
 }

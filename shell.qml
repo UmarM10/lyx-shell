@@ -9,4 +9,5 @@ ShellRoot {
 	id: rootShell
 
 	Layout {}
+	Background {}
 }

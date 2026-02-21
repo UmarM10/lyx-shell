@@ -89,13 +89,13 @@ Rectangle {
 				target: foreground
 				property: "scale"
 				to: 0.3
-				duration: 200
+				duration: 500
 				easing.type: Easing.OutExpo
 			}
 			OpacityAnimator {
 				target: foreground
 				to: 0.0
-				duration: 200
+				duration: 150
 				easing.type: Easing.OutExpo
 			}
 			OpacityAnimator {

@@ -193,7 +193,7 @@ Rectangle {
 		implicitHeight: 160
 		border.width: 2 
 		border.color: Colors.primaryContainer
-		color: Colors.primaryContainerVariant
+		color: Colors.topPrimary
 		radius: 20
 
 		Rectangle {
