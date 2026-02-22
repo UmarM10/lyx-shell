@@ -7,21 +7,91 @@ import qs.common
 import qs.modules.ControlCenter
 
 Item {
+	id: controlCenterWrapper
 	anchors.bottom: parent.bottom
 	anchors.bottomMargin: 10 
 	anchors.left: parent.left 
 	implicitWidth: root.implicitWidth 
 	implicitHeight: root.implicitHeight 
-	opacity: root.opacity
 
-	function show() { showAnimation.restart() }
-	function hide() { hideAnimation.restart() }
+	property int controlCenterWidth: 300 
+	property int controlCenterHeight: 450
+
+	function show() { state = "visible" }
+	function hide() { state = "invisible" }
+	function toggle() { state === "visible" ? state = "invisible" : state = "visible" }
+
+	state: "invisible"
+	states: [
+		State {
+			name: "invisible"
+			PropertyChanges {
+				target: controlCenterWrapper
+				// visible: false
+				opacity: 0.0 
+			}
+			PropertyChanges {
+				target: root
+				// visible: false
+				implicitWidth: 0 
+				implicitHeight: 0 
+				opacity: 0.0
+			}
+		},
+		State {
+			name: "visible" 
+			PropertyChanges {
+				target: controlCenterWrapper 
+				visible: true 
+				opacity: 1.0
+			}
+			PropertyChanges {
+				target: root
+				visible: true
+				implicitWidth: controlCenterWidth
+				implicitHeight: controlCenterHeight
+				opacity: 1.0
+			}
+		}
+	]
+	transitions: [
+		Transition {
+			from: "invisible"; to: "visible"
+			NumberAnimation {
+				properties: "implicitWidth,implicitHeight"
+				easing.type: Easing.OutExpo
+				duration: 300
+			}
+			NumberAnimation {
+				properties: "opacity"
+				easing.type: Easing.OutExpo
+				duration: 200
+			}
+		}, 
+		Transition {
+			from: "visible"; to: "invisible"
+			SequentialAnimation {
+				ParallelAnimation {
+					NumberAnimation {
+						properties: "implicitWidth,implicitHeight,opacity"
+						easing.type: Easing.InExpo
+						duration: 150
+					}
+				}
+				PropertyAction { target: controlCenterWrapper; property: "visible"; value: false }
+				PropertyAction { target: root; property: "visible"; value: false }
+			}
+		}
+	]
+
 
 	Corner {
 		target: parent
 		corner: "bottomLeft"
 		radius: 20
 		color: powerModal.visible ? "black" : Colors.background
+
+		Behavior on color { ColorAnimation { duration: 100 } }
 
 		anchors.bottom: target.top
 		anchors.left: target.left
@@ -32,80 +102,22 @@ Item {
 		radius: 20
 		color: powerModal.visible ? "black" : Colors.background
 
+		Behavior on color { ColorAnimation { duration: 200 } }
+
 		anchors.bottom: target.bottom
 		anchors.left: target.right
 	}
 
 	ClippingRectangle {
 		id: root
-		visible: true
-		implicitWidth: 0	
-		implicitHeight: 0
+		implicitWidth: 300
+		implicitHeight: 450
 		anchors.bottom: parent.bottom
 		anchors.left: parent.left
 		color: Colors.background
-		opacity: 0.0
 		topRightRadius: 15
 		bottomLeftRadius: 18
 
-
-		SequentialAnimation {
-			id: showAnimation
-			running: false
-
-			PropertyAction { target: root; property: "implicitWidth"; value: 0 }
-			PropertyAction { target: root; property: "implicitHeight"; value: 0 }
-			ParallelAnimation { 
-				NumberAnimation { 
-					target: root
-					property: "implicitWidth"
-					to: 300
-					duration: 300
-					easing.type: Easing.OutExpo
-				}
-				NumberAnimation {
-					target: root
-					property: "implicitHeight"
-					to: 450
-					duration: 300
-					easing.type: Easing.OutExpo
-				}
-				OpacityAnimator {
-					target: root
-					to: 1.0
-					duration: 50
-					easing.type: Easing.OutExpo
-				}
-			}
-		}
-
-		SequentialAnimation {
-			id: hideAnimation
-
-			ParallelAnimation {
-				NumberAnimation {
-					target: root
-					property: "implicitWidth"
-					to: 0
-					duration: 150
-					easing.type: Easing.InExpo
-				}
-				NumberAnimation {
-					target: root
-					property: "implicitHeight"
-					to: 0
-					duration: 150
-					easing.type: Easing.InExpo
-				}
-				OpacityAnimator {
-					target: root
-					to: 0
-					duration: 150
-					easing.type: Easing.InExpo
-				}
-			}
-		}
-		
 		Item {
 			id: content
 			anchors.fill: parent

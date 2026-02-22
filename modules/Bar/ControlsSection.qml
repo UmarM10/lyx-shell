@@ -1,5 +1,4 @@
 // import Quickshell
-import Quickshell.Services.Pipewire
 import Quickshell.Services.UPower
 import QtQuick
 
@@ -9,6 +8,9 @@ import qs.modules
 import qs.services
 
 import "./js/controls_bar_section.js" as Logic
+
+// Some code here is redundant (using animations and restarting manually rather than transitions) but 
+// it works and there are no performance downsides.
 
 Rectangle {
     id: root
@@ -216,8 +218,4 @@ Rectangle {
             }
         }
     }
-
-    // ControlCenter {
-    //     id: controlCenter
-    // }
 }
