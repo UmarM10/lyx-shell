@@ -31,4 +31,12 @@ Singleton{
 	function disable() {
 		Bluetooth.defaultAdapter.enabled = false
 	}
+
+	property string iconId: {
+		if (state && connectedDevices >= 1) {
+			return "bluetooth-connected.svg"
+		} else if (state) { 
+			return "bluetooth.svg"
+		} else return "bluetooth-off.svg"
+	}
 }

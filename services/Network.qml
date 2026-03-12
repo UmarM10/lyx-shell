@@ -12,7 +12,7 @@ Singleton {
     property int signalStrength: 0
     property bool isConnected: false
     property bool wifiEnabled: false
-    property string connectionType: "undefined" // "wifi", "ethernet", "disconnected"
+    property string connectionType: "diconnected" // "wifi", "ethernet", "disconnected"
     property bool wifiScanning: false
     // Available WiFi networks
     property var availableNetworks: []

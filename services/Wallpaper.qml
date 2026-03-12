@@ -7,7 +7,7 @@ Singleton {
 	id: root 
 
 	// Properties 
-	property url currentPath: "/home/UmarM/Pictures/Wallpapers/Japanese Blossoms.jpg"
+	property url currentPath: "/home/UmarM/Pictures/Wallpapers/Tahoe Night.jpg"
 	readonly property bool animated: currentPath.toString().endsWith(".gif")
 	readonly property string colorScheme: "dark"
 	// Signals

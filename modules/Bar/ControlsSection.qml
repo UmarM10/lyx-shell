@@ -146,15 +146,32 @@ Rectangle {
         onClicked: onClickedFunc()
     }
     function onClickedFunc() {
-        if (root.state == "") {
+        if (root.state === "") {
+			stateAutoChanger.enabled = false;
             pressedAnimation.restart();
             controlCenter.show();
+			stateAutoChanger.enabled = true;
         } else {
+			stateAutoChanger.enabled = false;
             root.state = "";
             revertAnimation.restart();
             controlCenter.hide();
+			stateAutoChanger.enabled = true;
         }
     }
+	Connections {
+		id: stateAutoChanger
+		target: root.controlCenter
+		function onStateChanged() {
+			if (root.controlCenter.state === "visible") {
+				root.state = "pressed"
+			} else {
+				root.state = ""; 
+				revertAnimation.restart();
+			}
+		}
+	}
+
     SequentialAnimation {
         id: pressedAnimation
         running: false

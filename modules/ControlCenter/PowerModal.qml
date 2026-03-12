@@ -1,4 +1,4 @@
-import Quickshell
+// import Quickshell
 import Quickshell.Io
 import QtQuick
 
@@ -7,6 +7,9 @@ import qs.common
 
 Modal {
     id: root
+
+	modalWidth: 240
+	modalHeight: 345
 
     LyxButton {
         id: backButton
@@ -29,6 +32,8 @@ Modal {
         onClicked: root.hide()
     }
 
+	property var controlCenter
+
     LyxText {
         font.pointSize: 14
         font.weight: 600
@@ -44,7 +49,7 @@ Modal {
         anchors.centerIn: parent
         anchors.verticalCenterOffset: 10
         implicitWidth: 200
-        implicitHeight: 290
+        implicitHeight: 260
         color: Colors.primaryContainerVariant
         radius: 15
         border.width: 2
@@ -61,7 +66,7 @@ Modal {
                 id: sleepButton 
                 anchors.horizontalCenter: parent.horizontalCenter
                 implicitWidth: parent.width
-                implicitHeight: 40
+                implicitHeight: 35
                 radius: 10
 
                 Row {
@@ -84,7 +89,11 @@ Modal {
                 }
 
 				Process { id: sleepCommand; running: false; command: ["systemctl", "suspend"] }
-				onClicked: sleepCommand.running = true
+				onClicked: { 
+					sleepCommand.running = true;
+					root.hide(); 
+					root.controlCenter.hide();
+				}
             }
 			Separator {
 				implicitWidth: parent.width
@@ -94,7 +103,7 @@ Modal {
                 id: shutDownButton
                 anchors.horizontalCenter: parent.horizontalCenter
                 implicitWidth: parent.width
-                implicitHeight: 40
+                implicitHeight: 35
                 radius: 10
 
                 Row {
@@ -126,7 +135,7 @@ Modal {
                 id: restartButton
                 anchors.horizontalCenter: parent.horizontalCenter
                 implicitWidth: parent.width
-                implicitHeight: 40
+                implicitHeight: 35
                 radius: 10
 
                 Row {
@@ -158,7 +167,7 @@ Modal {
                 id: hibernateButton 
                 anchors.horizontalCenter: parent.horizontalCenter
                 implicitWidth: parent.width
-                implicitHeight: 40
+                implicitHeight: 35
                 radius: 10
 
                 Row {
@@ -181,7 +190,11 @@ Modal {
                 }
 				
 				Process { id: hibernateCommand; command: ["systemctl", "hibernate"] }
-				onClicked: hibernateCommand.running = true
+				onClicked: {
+					hibernateCommand.running = true;
+					root.hide();
+					root.controlCenter.hide();
+				}
             }
 			Separator {
 				implicitWidth: parent.width
@@ -201,7 +214,7 @@ Modal {
 				id: lockButton
 				radius: 15
 				anchors.verticalCenter: parent.verticalCenter
-				implicitHeight: 80
+				implicitHeight: 70
 				implicitWidth: optionsBox.width / 2 - 11
 
 				Column {
@@ -229,7 +242,7 @@ Modal {
 				anchors.verticalCenter: parent.verticalCenter
 				orientation: "vertical"
 				thickness: 2
-				implicitHeight: 70
+				implicitHeight: 50
 				color: Colors.primaryContainer
 			}
 
@@ -237,7 +250,7 @@ Modal {
 				id: logOutButton 
 				radius: 15
 				anchors.verticalCenter: parent.verticalCenter
-				implicitHeight: 80
+				implicitHeight: 70
 				implicitWidth: optionsBox.width / 2 - 11
 
 				Column {

@@ -30,44 +30,44 @@ Singleton {
 
 
     // Primary Colors
-    property color primary: "#a4c9fe"
-    // property color primaryLight: "#3b608f"
-    // property color primaryDark: "#a4c9fe"
-    property color topPrimary: "#00315d"
-    property color primaryContainer: "#204876"
-	property color primaryContainerBrightness20: "#306db2"
-    // property color primaryContainerLight: "#d4e3ff"
-    // property color primaryContainerDark: "#204876"
+    property color primary: "#bcc3ff"
+    // property color primaryLight: "#525a92"
+    // property color primaryDark: "#bcc3ff"
+    property color topPrimary: "#242c61"
+    property color primaryContainer: "#3b4279"
+	property color primaryContainerBrightness20: "#555eac"
+    // property color primaryContainerLight: "#dfe0ff"
+    // property color primaryContainerDark: "#3b4279"
     property color primaryContainerVariant: { 
 		Wallpaper.colorScheme === "dark" ?
 		Qt.darker(primaryContainer, 2.0) : 
 		primaryContainerBrightness20
 	}
-    property color topPrimaryContainer: "#d4e3ff"
+    property color topPrimaryContainer: "#dfe0ff"
 
     // Secondary Colors
-    property color secondary: "#bcc7db"
-    property color topSecondary: "#263141"
-    property color secondaryContainer: "#3d4758"
-    property color topSecondaryContainer: "#d8e3f8"
+    property color secondary: "#c4c5dd"
+    property color topSecondary: "#2d2f42"
+    property color secondaryContainer: "#434559"
+    property color topSecondaryContainer: "#e0e1f9"
 
     // Tertiary Colors
-    property color tertiary: "#d9bde3"
-    property color topTertiary: "#3d2946"
-    property color tertiaryContainer: "#543f5e"
-    property color topTertiaryContainer: "#f6d9ff"
+    property color tertiary: "#e6bad7"
+    property color topTertiary: "#45263d"
+    property color tertiaryContainer: "#5d3c54"
+    property color topTertiaryContainer: "#ffd7f0"
 
     // Backgrounds & Surfaces
-    property color background: "#111318"
-    property color topBackground: "#e1e2e9"
-    property color surface: "#111318"
-    property color topSurface: "#e1e2e9"
-    property color surfaceVariant: "#43474e"
-    property color topSurfaceVariant: "#c3c6cf"
+    property color background: "#131318"
+    property color topBackground: "#e4e1e9"
+    property color surface: "#131318"
+    property color topSurface: "#e4e1e9"
+    property color surfaceVariant: "#46464f"
+    property color topSurfaceVariant: "#c7c5d0"
     
     // Outlines & Errors
-    property color outline: "#8d9199"
-    property color outlineVariant: "#43474e"
+    property color outline: "#90909a"
+    property color outlineVariant: "#46464f"
 	property color error: "#ffb4ab"
 
 	IpcHandler {
@@ -110,37 +110,5 @@ Singleton {
             if (theme.outlineVariant) colors.outlineVariant = theme.outlineVariant;
             if (theme.error) colors.error = theme.error;
         }
-
-	// 	// Primary Colors
-	// 	function primaryColor(color: color) { colors.primary = color }
-	// 	function primaryContainerColor(color: color) { colors.primaryContainer = color }
-	// 	function onPrimaryColor(color: color) { colors.topPrimary = color }
-	// 	function onPrimaryContainerColor(color: color) { colors.topPrimaryContainer = color }
-	// 	function primaryContainerBrightness20(color: color) { colors.primaryContainerBrightness20 = color }
-	//
-	// 	// Secondary Colors
-	// 	function secondaryColor(color: color) { colors.secondary = color }
-	// 	function secondaryContainerColor(color: color) { colors.secondaryContainer = color }
-	// 	function onSecondaryColor(color: color) { colors.topSecondary = color }
-	// 	function onSecondaryContainerColor(color: color) { colors.topSecondaryContainer = color }
-	//
-	// 	// Tertiary Colors 
-	// 	function tertiaryColor(color: color) { colors.tertiary = color }
-	// 	function tertiaryContainerColor(color: color) { colors.tertiaryContainer = color }
-	// 	function onTertiaryColor(color: color) { colors.topTertiary = color }
-	// 	function onTertiaryContainerColor(color: color) { colors.topTertiaryContainer = color }
-	//
-	// 	// Backgrounds & Surfaces 
-	// 	function backgroundColor(color: color) { colors.background = color}
-	// 	function onBackgroundColor(color: color) { colors.topBackground = color}
-	// 	function surfaceColor(color: color) { colors.surface = color}
-	// 	function onSurfaceColor(color: color) { colors.topSurface = color}
-	// 	function surfaceVariantColor(color: color) { colors.surfaceVariant = color}
-	// 	function onSurfaceVariantColor(color: color) { colors.topSurfaceVariant = color}
-	//
-	// 	// Outlines & Errors 
-	// 	function outlineColor(color: color) { colors.outline = color }
-	// 	function outlineVariantColor(color: color) { colors.outlineVariant = color }
-	// 	function errorColor(color: color) { colors.error = color }
 	}
 }

@@ -14,8 +14,8 @@ Item {
 	implicitWidth: root.implicitWidth 
 	implicitHeight: root.implicitHeight 
 
-	property int controlCenterWidth: 300 
-	property int controlCenterHeight: 450
+	property int controlCenterWidth: 271
+	property int controlCenterHeight: 375
 
 	function show() { state = "visible" }
 	function hide() { state = "invisible" }
@@ -127,9 +127,10 @@ Item {
 				anchors.topMargin: 8
 				spacing: 8
 				UserSection { id: userSection; powerModal: powerModal }
-				SystemControlsSection { id: controlsSection }
+				SystemTogglesSection { id: togglesSection }
+				StatusBarsSection { id: statusBars }
 			}
-			PowerModal { id: powerModal }
+			PowerModal { id: powerModal; controlCenter: controlCenterWrapper }
 		}
 	}
 }
