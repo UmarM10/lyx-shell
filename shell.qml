@@ -8,6 +8,10 @@ import qs.modules
 ShellRoot {
 	id: rootShell
 
-	Layout {}
-	Background {}
+	settings {
+		watchFiles: false
+	}
+
+	Layout { id: layout }
+	Background { id: background }
 }

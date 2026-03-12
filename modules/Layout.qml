@@ -40,6 +40,8 @@ Variants {
 					ShapePath {
 						strokeWidth: 0
 						fillColor: Colors.background
+
+						Behavior on fillColor { ColorAnimation { duration: 500; easing.type: Easing.OutQuad } }
 									
 						PathRectangle {
 							x: 0; y: 0

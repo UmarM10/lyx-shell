@@ -17,7 +17,7 @@ Repeater {
 			GradientStop {
 				position: 0.0
 
-				color: workspaceMouseArea.containsMouse ? Colors.primary : Hyprland.focusedWorkspace.id == modelData.id ? Colors.primaryDark : Colors.primaryContainer
+				color: workspaceMouseArea.containsMouse ? Colors.primary : Hyprland.focusedWorkspace.id == modelData.id ? Colors.primary : Colors.primaryContainer
 
 				Behavior on color {
 					ColorAnimation {
@@ -29,7 +29,7 @@ Repeater {
 			GradientStop {
 				position: 1.0
 
-				color: workspaceMouseArea.containsMouse ? Colors.primary : Hyprland.focusedWorkspace.id == modelData.id ? Colors.primaryLight : Colors.primaryContainerVariant
+				color: workspaceMouseArea.containsMouse ? Colors.primary : Hyprland.focusedWorkspace.id == modelData.id ? Colors.topPrimaryContainer : Colors.primaryContainerVariant
 
 				Behavior on color {
 					ColorAnimation {

@@ -27,9 +27,11 @@ PanelWindow {
     Rectangle {
         id: background
         color: Colors.background
-       // opacity: 0.95
+        // opacity: 0.95
  		topLeftRadius: 20
 		bottomLeftRadius: 20
+
+		Behavior on color { ColorAnimation { duration: 500; easing.type: Easing.OutQuad } }
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter

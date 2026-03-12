@@ -7,13 +7,12 @@ Singleton {
 	id: root 
 
 	// Properties 
-	property url currentPath: "/home/UmarM/Pictures/Wallpapers/Leaves.jpg"
+	property url currentPath: "/home/UmarM/Pictures/Wallpapers/Japanese Blossoms.jpg"
 	readonly property bool animated: currentPath.toString().endsWith(".gif")
 	readonly property string colorScheme: "dark"
 	// Signals
 	signal changed()
+	onCurrentPathChanged: { changed() }
 	// Methods
 	function set(newPath) { currentPath = newPath }
-
-	onCurrentPathChanged: { changed() }
 }

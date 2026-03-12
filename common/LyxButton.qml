@@ -17,6 +17,12 @@ Rectangle {
 			easing.type: Easing.OutQuad
 		}
 	}
+	Behavior on foregroundColor {
+		ColorAnimation {
+			duration: 125 
+			easing.type: Easing.OutQuad
+		}
+	}
 
 	signal clicked()
     MouseArea {
