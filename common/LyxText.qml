@@ -4,7 +4,7 @@ import qs.config
 import qs
 
 Text {
-	font.family: TextConfig.fontFamily
-	font.weight: TextConfig.defaultWeight
-	color: TextConfig.defaultColor
+	font.family: Config.values.fontFace
+	font.weight: Config.values.fontWeight
+	color: Colors.primary
 }

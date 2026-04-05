@@ -5,11 +5,12 @@ import Quickshell.Services.UPower
 import QtQuick
 
 Singleton {
+	property bool batteryAvailable: !UPower.displayDevice.state === UPowerDeviceState.Unknown
 	property QtObject defaultBattery: UPower.displayDevice
 	property string iconId: getIconId()
 
 	function getIconId() {
-		if (UPower.displayDevice.state == UPowerDeviceState.Unknown)
+		if (UPower.displayDevice.state === UPowerDeviceState.Unknown)
 			return "brightness-7.svg";
 		else if (UPower.displayDevice.percentage >= 0.875) {
 			return "battery-full.svg";

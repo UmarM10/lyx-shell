@@ -108,7 +108,7 @@ Item {
 			onClicked: {
 				if (Audio.defaultSinkAudio) {
 					Audio.defaultSinkAudio.muted = !Audio.defaultSinkAudio.muted
-	}
+				}
 			}
 		}
 

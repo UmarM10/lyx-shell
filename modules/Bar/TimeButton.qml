@@ -14,13 +14,15 @@ LyxButton {
 		id: clock
 		precision: SystemClock.Seconds
 	}
+
 	LyxText {
 		id: hours
 		anchors.centerIn: parent
 		horizontalAlignment: Text.AlignHCenter
 		text: Qt.formatDateTime(clock.date, "hh\nmm AP").slice(0, 5)
 		font.pixelSize: 20
-		font.family: TextConfig.barClockFontFamily
+		font.family: Config.values.barClockFontFace
+		font.weight: Config.values.barClockFontWeight
 		font.letterSpacing: 0.3
 		color: root.foregroundColor
 		scale: root.foregroundScale
