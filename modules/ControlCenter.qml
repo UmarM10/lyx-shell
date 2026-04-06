@@ -131,13 +131,13 @@ Item {
 				SystemTogglesSection { id: togglesSection }
 				StatusBarsSection { id: statusBars }
 
-				// LyxButton {
-				// 	// Testing Wallpaper Button
-				// 	implicitWidth: 100 
-				// 	implicitHeight: 100 
-				// 	radius: 15 
-				// 	onClicked: Wallpaper.currentPath = "/home/UmarM/Pictures/abstract-paper-cut-shape-wave-background-green/simple-background-green.jpg"
-				// }
+				LyxButton {
+					// Testing Wallpaper Button
+					implicitWidth: 100 
+					implicitHeight: 100 
+					radius: 15 
+					onClicked: Wallpaper.currentPath = "/home/UmarM/Pictures/abstract-paper-cut-shape-wave-background-green/simple-background-green.jpg"
+				}
 			}
 			PowerModal { id: powerModal; controlCenter: controlCenterWrapper }
 		}

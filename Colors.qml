@@ -4,6 +4,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 import qs.services
+import qs
 
 Singleton {
     id: colors
@@ -19,7 +20,7 @@ Singleton {
 	function updateColors() {}
 	Process {
 		id: colorUpdater
-		running: false
+		running: ShellState.loaded ? false : true
 		command: [
 			"matugen", "image", Wallpaper.rawPath,
 			"--mode", colors.colorScheme, 
@@ -40,44 +41,44 @@ Singleton {
 
 
     // Primary Colors
-    property color primary: "#c5c0ff"
-    // property color primaryLight: "#5c5891"
-    // property color primaryDark: "#c5c0ff"
-    property color topPrimary: "#2d2960"
-    property color primaryContainer: "#444078"
-	property color primaryContainerBrightness20: "#625ca8"
-    // property color primaryContainerLight: "#e3dfff"
-    // property color primaryContainerDark: "#444078"
+    property color primary: "#83d5c5"
+    // property color primaryLight: "#006b5e"
+    // property color primaryDark: "#83d5c5"
+    property color topPrimary: "#003730"
+    property color primaryContainer: "#005046"
+	property color primaryContainerBrightness20: "#009d89"
+    // property color primaryContainerLight: "#9ff2e1"
+    // property color primaryContainerDark: "#005046"
     property color primaryContainerVariant: { 
 		Wallpaper.colorScheme === "dark" ?
 		Qt.darker(primaryContainer, 2.0) : 
 		primaryContainerBrightness20
 	}
-    property color topPrimaryContainer: "#e3dfff"
+    property color topPrimaryContainer: "#9ff2e1"
 
     // Secondary Colors
-    property color secondary: "#c7c4dc"
-    property color topSecondary: "#302e42"
-    property color secondaryContainer: "#464559"
-    property color topSecondaryContainer: "#e4dff9"
+    property color secondary: "#b1ccc5"
+    property color topSecondary: "#1c3530"
+    property color secondaryContainer: "#334b46"
+    property color topSecondaryContainer: "#cde8e1"
 
     // Tertiary Colors
-    property color tertiary: "#ebb9d0"
-    property color topTertiary: "#472538"
-    property color tertiaryContainer: "#603b4f"
-    property color topTertiaryContainer: "#ffd8e9"
+    property color tertiary: "#accae5"
+    property color topTertiary: "#133348"
+    property color tertiaryContainer: "#2c4a60"
+    property color topTertiaryContainer: "#cae6ff"
 
     // Backgrounds & Surfaces
-    property color background: "#131318"
-    property color topBackground: "#e5e1e9"
-    property color surface: "#131318"
-    property color topSurface: "#e5e1e9"
-    property color surfaceVariant: "#47464f"
-    property color topSurfaceVariant: "#c8c5d0"
+    property color background: "#0e1513"
+    property color topBackground: "#dee4e1"
+    property color surface: "#0e1513"
+    property color topSurface: "#dee4e1"
+    property color surfaceVariant: "#3f4946"
+    property color topSurfaceVariant: "#bec9c5"
     
     // Outlines & Errors
-    property color outline: "#928f99"
-    property color outlineVariant: "#47464f"
+    property color outline: "#899390"
+    property color outlineVariant: "#3f4946"
 	property color error: "#ffb4ab"
 
 	IpcHandler {

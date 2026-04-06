@@ -8,6 +8,7 @@ Singleton {
 	id: root 
 	function write() { stateFile.writeAdapter() }
 	property alias values: values
+	property bool loaded: stateFile.loaded
 
 	FileView {
 		id: stateFile
