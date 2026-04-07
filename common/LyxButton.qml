@@ -2,10 +2,11 @@
 import QtQuick
 
 import qs
+import qs.config
 
 Rectangle {
 	id: root
-	radius: 5
+	radius: Config.values.cornerRounding * 0.4
 	color: backgroundColor
 
 	implicitWidth: 30

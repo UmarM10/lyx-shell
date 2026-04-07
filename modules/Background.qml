@@ -1,5 +1,6 @@
 import Quickshell
 import Quickshell.Widgets
+import Quickshell.Wayland
 import QtQuick
 
 import qs
@@ -19,7 +20,9 @@ Variants {
             bottom: true
             left: true
         }
-        aboveWindows: false
+		WlrLayershell.layer: WlrLayer.Background
+		WlrLayershell.exclusiveZone: -1
+		exclusionMode: ExclusionMode.Ignore
         color: Colors.background
 
 		Connections {

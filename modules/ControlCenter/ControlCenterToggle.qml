@@ -3,12 +3,13 @@ import QtQuick
 
 import qs 
 import qs.common 
+import qs.config
 
 ToggleButton {
 	id: root
 	implicitWidth: 125
 	implicitHeight: 50
-	radius: 10
+	radius: Config.values.cornerRounding * 0.6
 	border.width: toggled ? 0 : 2
 	border.color: Colors.primaryContainer
 

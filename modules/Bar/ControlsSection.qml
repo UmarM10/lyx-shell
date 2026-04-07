@@ -4,7 +4,7 @@ import QtQuick
 
 import qs
 import qs.common
-import qs.modules
+import qs.config
 import qs.services
 
 import "./js/controls_bar_section.js" as Logic
@@ -18,7 +18,7 @@ Rectangle {
     implicitWidth: 35
     implicitHeight: 65
 
-    radius: 12
+    radius: Config.values.cornerRounding * 0.6
     color: Logic.getBackgroundColor()
     border.width: 2
     border.color: Colors.primaryContainer

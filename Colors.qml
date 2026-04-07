@@ -9,13 +9,13 @@ import qs
 Singleton {
     id: colors
 
-	property string colorSchemeMode: "wallpaper" // Wallpaper, dark, or light
+	property string colorSchemeMode: ShellState.values.colorSchemeMode // Wallpaper, dark, or light
 	readonly property string colorScheme: {
 		if (colorSchemeMode === "wallpaper") {
 			return Wallpaper.colorScheme
 		} else return colorSchemeMode
 	}
-	property string colorType: "scheme-tonal-spot"
+	property string colorType: ShellState.values.colorType
 
 	function updateColors() {}
 	Process {

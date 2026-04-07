@@ -4,6 +4,7 @@ import QtQuick
 
 import qs
 import qs.common
+import qs.config
 
 Modal {
     id: root
@@ -51,7 +52,7 @@ Modal {
         implicitWidth: 200
         implicitHeight: 260
         color: Colors.primaryContainerVariant
-        radius: 15
+        radius: Config.values.cornerRounding
         border.width: 2
         border.color: Colors.primaryContainer
 
@@ -67,7 +68,7 @@ Modal {
                 anchors.horizontalCenter: parent.horizontalCenter
                 implicitWidth: parent.width
                 implicitHeight: 35
-                radius: 10
+                radius: Config.values.cornerRounding * 0.5
 
                 Row {
                     anchors.centerIn: parent
@@ -104,7 +105,7 @@ Modal {
                 anchors.horizontalCenter: parent.horizontalCenter
                 implicitWidth: parent.width
                 implicitHeight: 35
-                radius: 10
+                radius: Config.values.cornerRounding * 0.5
 
                 Row {
                     anchors.centerIn: parent
@@ -136,7 +137,7 @@ Modal {
                 anchors.horizontalCenter: parent.horizontalCenter
                 implicitWidth: parent.width
                 implicitHeight: 35
-                radius: 10
+                radius: Config.values.cornerRounding * 0.5
 
                 Row {
                     anchors.centerIn: parent
@@ -168,7 +169,7 @@ Modal {
                 anchors.horizontalCenter: parent.horizontalCenter
                 implicitWidth: parent.width
                 implicitHeight: 35
-                radius: 10
+                radius: Config.values.cornerRounding * 0.5
 
                 Row {
                     anchors.centerIn: parent
@@ -212,7 +213,7 @@ Modal {
 
 			LyxButton {
 				id: lockButton
-				radius: 15
+                radius: Config.values.cornerRounding * 0.8
 				anchors.verticalCenter: parent.verticalCenter
 				implicitHeight: 70
 				implicitWidth: optionsBox.width / 2 - 11
@@ -248,7 +249,7 @@ Modal {
 
 			LyxButton {
 				id: logOutButton 
-				radius: 15
+				radius: Config.values.cornerRounding * 0.8
 				anchors.verticalCenter: parent.verticalCenter
 				implicitHeight: 70
 				implicitWidth: optionsBox.width / 2 - 11

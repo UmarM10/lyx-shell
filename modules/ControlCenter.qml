@@ -5,6 +5,7 @@ import QtQuick
 import qs 
 import qs.common 
 import qs.services
+import qs.config
 import qs.modules.ControlCenter
 
 Item {
@@ -91,6 +92,7 @@ Item {
 		corner: "bottomLeft"
 		radius: 20
 		color: powerModal.visible ? "black" : Colors.background
+		opacity: Config.values.shellOpacity
 
 		Behavior on color { ColorAnimation { duration: 100 } }
 
@@ -102,6 +104,7 @@ Item {
 		corner: "bottomLeft" 
 		radius: 20
 		color: powerModal.visible ? "black" : Colors.background
+		opacity: Config.values.shellOpacity
 
 		Behavior on color { ColorAnimation { duration: 200 } }
 
@@ -115,9 +118,16 @@ Item {
 		implicitHeight: 450
 		anchors.bottom: parent.bottom
 		anchors.left: parent.left
-		color: Colors.background
+		color: "transparent"
 		topRightRadius: 15
 		bottomLeftRadius: 18
+
+		Rectangle {
+			id: background 
+			anchors.fill: parent 
+			color: Colors.background
+			opacity: Config.values.shellOpacity
+		}
 
 		Item {
 			id: content

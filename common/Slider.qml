@@ -1,5 +1,6 @@
 import QtQuick 
 import qs 
+import qs.config
 
 Rectangle {
 	id: root
@@ -16,7 +17,7 @@ Rectangle {
 	implicitWidth: parent.width - 32
 	implicitHeight: 15
 	color: Colors.primaryContainerVariant
-	radius: 5
+	radius: Config.values.cornerRounding * 0.25
 
 	Rectangle {
 		id: leftActiveTrack

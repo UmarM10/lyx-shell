@@ -2,6 +2,7 @@ import Quickshell.Widgets
 import QtQuick
 
 import qs
+import qs.config
 
 // Modal
 Rectangle {
@@ -44,7 +45,7 @@ Rectangle {
 		color: Colors.background
 		implicitHeight: root.modalHeight
 		implicitWidth: root.modalWidth
-		radius: 20
+		radius: Config.values.cornerRounding
 
 		MouseArea { id: foregroundMouseArea; anchors.fill: parent }
 	}

@@ -1,9 +1,11 @@
 import Quickshell
+import Quickshell.Wayland
 import QtQuick
 import QtQuick.Shapes
 
 import qs
 import qs.common
+import qs.config
 
 Variants {
 	model: Quickshell.screens
@@ -11,6 +13,7 @@ Variants {
 	delegate: Component {
 		PanelWindow {
 			id: rootOverlayPanel
+			WlrLayershell.namespace: "lyx-overlay"
 			mask: Region { 
 				Region { item: controlCenter }
 				Region { item: osd }
@@ -36,6 +39,7 @@ Variants {
 					anchors.fill: parent
 					layer.enabled: true
 					layer.samples: 10
+					opacity: Config.values.shellOpacity
 
 					ShapePath {
 						strokeWidth: 0
@@ -55,7 +59,7 @@ Variants {
 							width: screenBorder.width - 10
 							height: screenBorder.height - 20 
 							
-							radius: 20 
+							radius: Config.values.screenCornerRounding * 1.2
 						}
 					}
 				}
@@ -63,7 +67,7 @@ Variants {
 				Corner {
 					target: background
 					corner: "topRight"
-					radius: 25
+					radius: Config.values.screenCornerRounding
 					color: "black"
 
 					anchors.top: target.top
@@ -72,7 +76,7 @@ Variants {
 				Corner {
 					target: background
 					corner: "bottomRight"
-					radius: 25
+					radius: Config.values.screenCornerRounding
 					color: "black"
 
 					anchors.bottom: target.bottom

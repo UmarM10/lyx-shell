@@ -5,6 +5,7 @@ import Qt5Compat.GraphicalEffects
 
 import qs
 import qs.common
+import qs.config
 
 // Logged in user with uptime and power button	
 Rectangle {
@@ -15,7 +16,7 @@ Rectangle {
 	implicitWidth: parent.width - 15
 	implicitHeight: 32
 	color: Colors.primaryContainer
-	radius: 12
+	radius: Config.values.cornerRounding * 0.5
 
 	property var powerModal
 	
