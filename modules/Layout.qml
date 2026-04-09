@@ -90,7 +90,6 @@ Variants {
 				screen: rootOverlayPanel.modelData
 				controlCenter: controlCenter
 			}
-			OSD { id: osd; visible: controlCenter.state === "visible" ? false : true }
 			ControlCenter { id: controlCenter }
 		}
 	}

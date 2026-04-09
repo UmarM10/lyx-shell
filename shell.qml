@@ -5,6 +5,7 @@ import Quickshell.Io
 import QtQuick
 
 import qs.modules
+import qs.modules.wrappers
 import qs.config
 import qs.services
 
@@ -15,6 +16,7 @@ ShellRoot {
 		watchFiles: false
 	}
 
-	Layout { id: layout }
+	OSDWrapper { id: osd }
 	Background { id: background }
+	Layout { id: layout }
 }

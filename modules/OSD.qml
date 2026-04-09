@@ -9,7 +9,7 @@ import qs.services
 
 Item {
 	anchors.horizontalCenter: parent.horizontalCenter 
-	anchors.top: parent.top 
+	// anchors.top: parent.top 
 	opacity: root.opacity 
 	implicitWidth: root.implicitWidth 
 	implicitHeight: root.implicitHeight 
@@ -18,9 +18,14 @@ Item {
 		target: parent
 		corner: "topRight"
 		color: Colors.background
-		opacity: root.implicitHeight === 65 ? 1.0 : root.implicitHeight / 100 
-		visible: root.visible
-		radius: 20
+		opacity: showAnimation.running || hideTimerAnimation.running ? 1.0 : 0.0
+		radius: 10
+
+		Behavior on opacity {
+			OpacityAnimator {
+				duration: 200
+			}
+		}
 
 		anchors.top: target.top
 		anchors.right: target.left
@@ -29,9 +34,14 @@ Item {
 		target: parent
 		corner: "topLeft"
 		color: Colors.background
-		opacity: root.implicitHeight === 65 ? 1.0 : root.implicitHeight / 100
-		visible: root.visible
-		radius: 20
+		opacity: showAnimation.running || hideTimerAnimation.running ? 1.0 : 0.0
+		radius: 10
+
+		Behavior on opacity {
+			OpacityAnimator {
+				duration: 200 
+			}
+		}
 
 		anchors.top: target.top
 		anchors.left: target.right
@@ -71,7 +81,7 @@ Item {
 			id: hideTimerAnimation
 			running: false
 			
-			PauseAnimation { duration: 2000 }
+			PauseAnimation { id: timerAnimation; duration: 2000 }
 			ParallelAnimation {
 				NumberAnimation {
 					target: root
