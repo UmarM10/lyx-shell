@@ -63,10 +63,8 @@ Rectangle {
 			text: usernameCollector.text
 			elide: Text.ElideRight
 			color: Colors.primary
-			font {
-				pixelSize: 14
-				weight: 600
-			}
+			usePercentSize: true 
+			percentSize: 0.9
 		}
 	}
 	
@@ -81,10 +79,9 @@ Rectangle {
 			text: uptimeCollector.text
 			color: Colors.primary
 			anchors.verticalCenter: parent.verticalCenter
-			font {
-				pixelSize: 10
-				weight: 500
-			}
+			usePercentSize: true 
+			percentSize: 0.6
+			weightModifier: -100
 		}
 		LyxButton {
 			id: powerButton

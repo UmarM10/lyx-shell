@@ -33,7 +33,8 @@ ToggleButton {
 		anchors.verticalCenterOffset: root.toggled ? -7 : 0
 		color: parent.foregroundColor 
 		text: root.title
-		font.pixelSize: 14
+		usePercentSize: true
+		percentSize: 0.9
 
 		Behavior on anchors.verticalCenterOffset {
 			NumberAnimation { duration: 50; easing.type: Easing.OutQuad }
@@ -48,7 +49,8 @@ ToggleButton {
 		color: parent.foregroundColor 
 		elide: Text.ElideRight
 		width: parent.width / 1.8
-		font.pixelSize: 10
+		usePercentSize: true
+		percentSize: 0.6
 		opacity: root.toggled ? 1.0 : 0
 		Behavior on opacity {
 			NumberAnimation { duration: 100; easing.type: Easing.OutQuad }

@@ -9,7 +9,7 @@ Rectangle {
 	id: root
 	anchors.horizontalCenter: parent.horizontalCenter
 	implicitWidth: parent.implicitWidth
-	implicitHeight: 115
+	implicitHeight: 60
 	color: "transparent"
 	radius: 15
 

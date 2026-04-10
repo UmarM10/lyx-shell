@@ -36,7 +36,7 @@ Modal {
 	property var controlCenter
 
     LyxText {
-        font.pointSize: 14
+        font.pixelSize: Config.values.fontPixelSize + 3
         font.weight: 600
         anchors.horizontalCenter: parent.horizontalCenter
 		anchors.horizontalCenterOffset: 5
@@ -84,7 +84,6 @@ Modal {
                     LyxText {
                         anchors.verticalCenter: parent.verticalCenter
                         text: "Sleep"
-                        font.pointSize: 12
                         color: sleepButton.foregroundColor
                     }
                 }
@@ -121,7 +120,6 @@ Modal {
                     LyxText {
                         anchors.verticalCenter: parent.verticalCenter
                         text: "Shut Down"
-                        font.pointSize: 12
                         color: shutDownButton.foregroundColor
                     }
                 }
@@ -153,7 +151,6 @@ Modal {
                     LyxText {
                         anchors.verticalCenter: parent.verticalCenter
                         text: "Restart"
-                        font.pointSize: 12
                         color: restartButton.foregroundColor
                     }
                 }
@@ -185,7 +182,6 @@ Modal {
                     LyxText {
                         anchors.verticalCenter: parent.verticalCenter
                         text: "Hibernate"
-                        font.pointSize: 12
                         color: hibernateButton.foregroundColor
                     }
                 }
@@ -231,7 +227,6 @@ Modal {
 					LyxText {
 						anchors.horizontalCenter: parent.horizontalCenter
 						color: lockButton.foregroundColor
-						font.pointSize: 12
 						text: "Lock"
 					}
 				}
@@ -267,7 +262,6 @@ Modal {
 					LyxText {
 						anchors.horizontalCenter: parent.horizontalCenter
 						color: logOutButton.foregroundColor
-						font.pointSize: 12
 						text: "Log Out"
 					}
 				}
@@ -285,7 +279,6 @@ Modal {
 				anchors.verticalCenterOffset: -25
 				horizontalAlignment: Text.AlignHCenter
 				text: "Shutting down in\n60 seconds..."
-				font.pixelSize: 16
 			}
 
 			Row {
@@ -301,6 +294,7 @@ Modal {
 						anchors.centerIn: parent
 						text: "Cancel"
 						color: parent.foregroundColor
+						font.pixelSize: Config.values.fontPixelSize * 0.8
 					}
 
 					onClicked: {
@@ -316,6 +310,7 @@ Modal {
 						anchors.centerIn: parent
 						text: "Shut Down"
 						color: parent.foregroundColor
+						font.pixelSize: Config.values.fontPixelSize * 0.8
 					}
 
 					onClicked: {
@@ -346,7 +341,6 @@ Modal {
 				anchors.verticalCenterOffset: -25
 				horizontalAlignment: Text.AlignHCenter
 				text: "Restarting in\n60 seconds..."
-				font.pixelSize: 16
 			}
 
 			Row {
@@ -362,6 +356,7 @@ Modal {
 						anchors.centerIn: parent
 						text: "Cancel"
 						color: parent.foregroundColor
+						font.pixelSize: Config.values.fontPixelSize * 0.8
 					}
 
 					onClicked: {
@@ -377,6 +372,7 @@ Modal {
 						anchors.centerIn: parent
 						text: "Restart"
 						color: parent.foregroundColor
+						font.pixelSize: Config.values.fontPixelSize * 0.8
 					}
 
 					onClicked: {
@@ -407,7 +403,6 @@ Modal {
 				anchors.verticalCenterOffset: -25
 				horizontalAlignment: Text.AlignHCenter
 				text: "Logging out in\n60 seconds..."
-				font.pixelSize: 16
 			}
 
 			Row {
@@ -423,6 +418,7 @@ Modal {
 						anchors.centerIn: parent
 						text: "Cancel"
 						color: parent.foregroundColor
+						font.pixelSize: Config.values.fontPixelSize * 0.8
 					}
 
 					onClicked: {
@@ -438,6 +434,7 @@ Modal {
 						anchors.centerIn: parent
 						text: "Log Out"
 						color: parent.foregroundColor
+						font.pixelSize: Config.values.fontPixelSize * 0.8
 					}
 
 					onClicked: {
@@ -468,7 +465,7 @@ Modal {
 				anchors.centerIn: parent 
 				anchors.verticalCenterOffset: -25
 				text: "Lock Screen is still\na work in progress.\nCheck again soon!"
-				font.pixelSize: 14
+				font.pixelSize: Config.values.fontPixelSize * 0.9
 			}
 			LyxButton {
 				anchors.centerIn: parent
@@ -480,6 +477,7 @@ Modal {
 					anchors.centerIn: parent 
 					text: "Okay"
 					color: parent.foregroundColor
+					font.pixelSize: Config.values.fontPixelSize * 0.8
 				}
 				onClicked: lockScreenComingSoonModal.hide()
 			}
