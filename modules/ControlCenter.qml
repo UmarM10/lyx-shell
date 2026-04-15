@@ -141,7 +141,7 @@ Item {
 				SystemTogglesSection { id: togglesSection }
 				StatusBarsSection { id: statusBars }
 				// Not Completed
-				// BatterySection { id: batterySection }
+				BatterySection { id: batterySection }
 
 				// LyxButton {
 				// 	// Testing Wallpaper Button
