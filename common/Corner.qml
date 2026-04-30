@@ -11,6 +11,7 @@ Shape {
 	property real radius: 20
 	property color color: Colors.background
 	property alias path: path
+	property bool autoVisibility: true
 	// Whether the corner is outside the target edge or not
 	// property bool outside
 
@@ -21,7 +22,7 @@ Shape {
 	layer.enabled: true
 	layer.samples: 20
 
-	visible: target.visible
+	visible: root.autoVisibility ? target.visible : null
 	opacity: target.opacity
 
 	// anchors.top: {

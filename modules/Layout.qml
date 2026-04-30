@@ -2,6 +2,7 @@ import Quickshell
 import Quickshell.Wayland
 import QtQuick
 import QtQuick.Shapes
+import QtQuick.Effects
 
 import qs
 import qs.common
@@ -16,7 +17,6 @@ Variants {
 			WlrLayershell.namespace: "lyx-overlay"
 			mask: Region { 
 				Region { item: controlCenter }
-				Region { item: osd }
 			}
 
 			required property var modelData
@@ -26,6 +26,39 @@ Variants {
 			}
 			color: "transparent"
 			screen: modelData
+
+			RectangularShadow {
+				id: barShadow
+				anchors.left: parent.left
+				anchors.leftMargin: -2
+				width: 7
+				height: parent.height
+				opacity: 0.5
+			}
+			RectangularShadow {
+				id: topShadow
+				anchors.top: parent.top 
+				anchors.topMargin: 8
+				height: 7 
+				width: parent.width 
+				opacity: 0.5
+			}
+			RectangularShadow {
+				id: rightShadow 
+				anchors.right: parent.right 
+				anchors.rightMargin: 8
+				height: parent.height 
+				width: 7
+				opacity: 0.5
+			}
+			RectangularShadow {
+				id: bottomShadow
+				anchors.bottom: parent.bottom
+				anchors.bottomMargin: 8
+				height: 7 
+				width: parent.width 
+				opacity: 0.5
+			}
 
 			Rectangle {
 				id: background	
