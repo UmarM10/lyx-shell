@@ -13,7 +13,7 @@ PanelWindow {
 	anchors.bottom: true 
 	margins.bottom: 10
 	implicitWidth: 725 
-	implicitHeight: 350
+	implicitHeight: 900
 	visible: true
 	aboveWindows: true 
 	WlrLayershell.namespace: "lyx-dashboard"

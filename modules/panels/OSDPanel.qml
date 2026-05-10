@@ -13,6 +13,7 @@ PanelWindow {
 	
 	mask: Region { item: osd }
 	WlrLayershell.layer: WlrLayer.Overlay
+	WlrLayershell.namespace: "lyx-osd"
 	exclusionMode: ExclusionMode.Ignore 
 	aboveWindows: true
 	anchors {
