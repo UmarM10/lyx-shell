@@ -46,7 +46,7 @@ Rectangle {
 			y: root.activeTab ? (rowOfTabs.y - height - 5) : 0 
 
 			Behavior on x {
-				NumberAnimation { duration: 200; easing.type: Easing.OutExpo }
+				NumberAnimation { duration: 200; easing.type: Easing.OutBack; easing.overshoot: 0.55 }
 			}
 			Behavior on opacity {
 				NumberAnimation { duration: 50 }

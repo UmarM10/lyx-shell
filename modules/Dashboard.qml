@@ -103,6 +103,7 @@ ClippingRectangle {
 			NumberAnimation {
 				properties: "implicitWidth,implicitHeight"
 				easing.type: Easing.OutBack
+				easing.overshoot: 0.55
 				duration: 300
 			}
 			OpacityAnimator {
@@ -114,6 +115,7 @@ ClippingRectangle {
 			NumberAnimation {
 				properties: "implicitHeight,implicitWidth"
 				easing.type: Easing.OutBack
+				easing.overshoot: 0.55
 				duration: 500
 			}
 			OpacityAnimator {
