@@ -34,6 +34,6 @@ ShellRoot {
     Bar {
         id: bar
         screen: Quickshell.screens[0]
-        controlCenter: controlCenter.controlCenter
+        controlCenter: controlCenterPanel.controlCenter
     }
 }
