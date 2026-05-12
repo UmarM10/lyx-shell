@@ -10,14 +10,30 @@ import qs.config
 import qs.services
 
 ShellRoot {
-	id: rootShell
+    id: rootShell
 
-	settings {
-		watchFiles: false
-	}
+    settings {
+        watchFiles: false
+    }
 
-	Background { id: background }
-	Layout { id: layout }
-	OSDPanel { id: osd }
-	DashboardPanel { id: dashboard }
+    Background {
+        id: background
+    }
+    Layout {
+        id: layout
+    }
+    OSDPanel {
+        id: osd
+    }
+    DashboardPanel {
+        id: dashboard
+    }
+    ControlCenterPanel {
+        id: controlCenterPanel
+    }
+    Bar {
+        id: bar
+        screen: Quickshell.screens[0]
+        controlCenter: controlCenterPanel.controlCenter
+    }
 }

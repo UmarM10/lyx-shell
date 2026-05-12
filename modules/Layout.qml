@@ -15,11 +15,10 @@ Variants {
 		PanelWindow {
 			id: rootOverlayPanel
 			WlrLayershell.namespace: "lyx-overlay"
-			mask: Region { 
-				Region { item: controlCenter }
-			}
+			mask: Region {}
 
 			required property var modelData
+			readonly property bool primaryMonitor: screen === Quickshell.screens[0]
 
 			anchors {
 				top: true; bottom: true; left: true; right: true
@@ -59,6 +58,15 @@ Variants {
 				width: parent.width 
 				opacity: 0.5
 			}
+			RectangularShadow {
+				id: leftShadow 
+				visible: !rootOverlayPanel.primaryMonitor
+				anchors.left: parent.left
+				anchors.leftMargin: 8
+				width: 7 
+				height: parent.height
+				opacity: 0.5
+			}
 
 			Rectangle {
 				id: background	
@@ -79,7 +87,7 @@ Variants {
 						fillColor: Colors.background
 
 						Behavior on fillColor { ColorAnimation { duration: 500; easing.type: Easing.OutQuad } }
-									
+
 						PathRectangle {
 							x: 0; y: 0
 							width: screenBorder.width
@@ -87,9 +95,9 @@ Variants {
 						}
 
 						PathRectangle {
-							x: 0
+							x: rootOverlayPanel.primaryMonitor ? 0 : 10
 							y: 10
-							width: screenBorder.width - 10
+							width: screenBorder.width - (rootOverlayPanel.primaryMonitor ? 10 : 20)
 							height: screenBorder.height - 20 
 							
 							radius: Config.values.screenCornerRounding * 1.2
@@ -116,14 +124,6 @@ Variants {
 					anchors.right: target.right
 				}
 			}
-
-
-			Bar { 
-				id: bar
-				screen: rootOverlayPanel.modelData
-				controlCenter: controlCenter
-			}
-			ControlCenter { id: controlCenter }
 		}
 	}
 }

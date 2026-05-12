@@ -61,7 +61,8 @@ Item {
 			from: "invisible"; to: "visible"
 			NumberAnimation {
 				properties: "implicitWidth,implicitHeight"
-				easing.type: Easing.OutExpo
+				easing.type: Easing.OutBack
+				easing.overshoot: 0.6
 				duration: 300
 			}
 			NumberAnimation {
