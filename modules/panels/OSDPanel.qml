@@ -14,6 +14,7 @@ PanelWindow {
 	mask: Region { item: osd }
 	WlrLayershell.layer: WlrLayer.Overlay
 	WlrLayershell.namespace: "lyx-osd"
+	screen: Quickshell.screens[0]
 	exclusionMode: ExclusionMode.Ignore 
 	aboveWindows: true
 	anchors {

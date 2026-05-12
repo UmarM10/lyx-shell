@@ -16,6 +16,7 @@ PanelWindow {
 	implicitHeight: 900
 	visible: true
 	aboveWindows: true 
+	screen: Quickshell.screens[0]
 	WlrLayershell.namespace: "lyx-dashboard"
 	exclusionMode: ExclusionMode.Ignore
 	exclusiveZone: 0
