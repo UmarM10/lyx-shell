@@ -16,7 +16,7 @@ Item {
 	implicitWidth: root.implicitWidth 
 	implicitHeight: root.implicitHeight 
 
-	property int controlCenterWidth: 271
+	property int controlCenterWidth: 275
 	property int controlCenterHeight: 375
 
 	function show() { state = "visible" }
