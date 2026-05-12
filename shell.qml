@@ -25,7 +25,7 @@ ShellRoot {
     OSDPanel {
         id: osd
     }
-    DashboardPanel {
+	DashboardPanel {
         id: dashboard
     }
     ControlCenterPanel {
@@ -34,6 +34,6 @@ ShellRoot {
     Bar {
         id: bar
         screen: Quickshell.screens[0]
-        controlCenter: controlCenterPanel.controlCenter
+        controlCenter: controlCenter.controlCenter
     }
 }

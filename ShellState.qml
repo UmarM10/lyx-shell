@@ -24,7 +24,7 @@ Singleton {
 		adapter: JsonAdapter {
 			id: values
 
-			property url currentWallpaperPath: Qt.resolvedUrl("assets/simple-background-blue.jpg")
+			property url currentWallpaperPath: Qt.resolvedUrl("assets/simple-background-green.jpg")
 			property string colorSchemeMode: "dark" // "wallpaper", "dark", or "light" (soon to be auto)
 			property string colorType: "scheme-tonal-spot"
 			// "scheme-tonal-spot" (default), "scheme-content", "scheme-expressive", "scheme-fidelity",
