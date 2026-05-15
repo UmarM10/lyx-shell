@@ -17,11 +17,21 @@ Rectangle {
     anchors.horizontalCenter: parent.horizontalCenter
     implicitWidth: 35
     implicitHeight: 65
+	color: Colors.secondaryContainer
+
+	Rectangle {
+		id: colorOverlay 
+		anchors.fill: root
+		radius: root.radius 
+		opacity: mouseArea.containsMouse ? 0.08 : 0.0
+		color: Colors._onSecondaryContainer
+
+		Behavior on opacity { OpacityAnimator { duration: 100; easing.type: Easing.OutQuad } }
+	}
 
     radius: Config.values.cornerRounding * 0.6
-    color: Logic.getBackgroundColor()
     border.width: 2
-    border.color: Colors.primaryContainer
+    border.color: Colors.outlineVariant
 
 	property var controlCenter
 
@@ -44,7 +54,7 @@ Rectangle {
         anchors.verticalCenterOffset: 15
         height: 19
         width: 19
-        color: Colors.primary
+        color: Colors._onSecondaryContainer
         iconId: Audio.iconId
     }
 
@@ -55,7 +65,7 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         height: 19
         width: 19
-        color: Colors.primary
+        color: Colors._onSecondaryContainer
         iconId: Battery.iconId
     }
     // Charging Icon
@@ -67,13 +77,13 @@ Rectangle {
         radius: 20
         implicitHeight: 10
         implicitWidth: 10
-        color: Colors.primaryContainer
+        color: Colors.tertiary
         MaterialIcon {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
             height: 8
             width: 8
-            color: Colors.primary
+            color: Colors._onTertiary
             iconId: "bolt.svg"
         }
     }
@@ -86,7 +96,7 @@ Rectangle {
         anchors.verticalCenterOffset: -15
         height: 19
         width: 19
-        color: Colors.primary
+        color: Colors._onSecondaryContainer
 
         iconId: Network.iconId
     }
@@ -97,7 +107,7 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         height: 20
         width: 20
-        color: Colors.primary
+        color: Colors._onSecondaryContainer
         iconId: "close.svg"
         visible: false
     }
@@ -122,8 +132,8 @@ Rectangle {
                     visible: true
                 }
                 root {
-                    color: Colors.primaryContainer
-                    border.color: Colors.primary
+                    color: Colors.tertiaryContainer
+                    border.color: Colors.tertiary
                 }
             }
 		},
@@ -143,7 +153,7 @@ Rectangle {
         id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
-        onClicked: onClickedFunc()
+        onClicked: root.onClickedFunc()
     }
     function onClickedFunc() {
         if (root.state === "") {

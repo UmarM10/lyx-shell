@@ -1,0 +1,65 @@
+{
+    "errorColors": {
+        "_onError": "#690005",
+        "_onErrorContainer": "#ffdad6",
+        "error": "#ffb4ab",
+        "errorContainer": "#93000a"
+    },
+    "otherColors": {
+        "inverseOnSurface": "#2b3230",
+        "inversePrimary": "#006b5e",
+        "inverseSurface": "#dee4e1",
+        "scrim": "#000000",
+        "shadow": "#000000"
+    },
+    "primaryColors": {
+        "_onPrimary": "#003730",
+        "_onPrimaryContainer": "#9ff2e1",
+        "primary": "#83d5c5",
+        "primaryContainer": "#005046"
+    },
+    "primaryFixedColors": {
+        "_onPrimaryFixed": "#00201b",
+        "_onPrimaryFixedVariant": "#005046",
+        "primaryFixed": "#9ff2e1",
+        "primaryFixedDim": "#83d5c5"
+    },
+    "secondaryColors": {
+        "_onSecondary": "#1c3530",
+        "_onSecondaryContainer": "#cde8e1",
+        "secondary": "#b1ccc5",
+        "secondaryContainer": "#334b46"
+    },
+    "secondaryFixedColors": {
+        "_onSecondaryFixed": "#06201b",
+        "_onSecondaryFixedVariant": "#334b46",
+        "secondaryFixed": "#cde8e1",
+        "secondaryFixedDim": "#b1ccc5"
+    },
+    "surfaceColors": {
+        "_onSurface": "#dee4e1",
+        "_onSurfaceVariant": "#bec9c5",
+        "outline": "#899390",
+        "outlineVariant": "#3f4946",
+        "surface": "#0e1513",
+        "surfaceBright": "#343b39",
+        "surfaceContainer": "#1b211f",
+        "surfaceContainerHigh": "#252b2a",
+        "surfaceContainerHighest": "#303634",
+        "surfaceContainerLow": "#171d1b",
+        "surfaceContainerLowest": "#090f0e",
+        "surfaceDim": "#0e1513"
+    },
+    "tertiaryColors": {
+        "_onTertiary": "#133348",
+        "_onTertiaryContainer": "#cae6ff",
+        "tertiary": "#accae5",
+        "tertiaryContainer": "#2c4a60"
+    },
+    "tertiaryFixedColors": {
+        "_onTertiaryFixed": "#001e30",
+        "_onTertiaryFixedVariant": "#2c4a60",
+        "tertiaryFixed": "#001e30",
+        "tertiaryFixedDim": "#accae5"
+    }
+}

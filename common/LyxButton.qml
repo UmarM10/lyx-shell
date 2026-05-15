@@ -7,7 +7,15 @@ import qs.config
 Rectangle {
 	id: root
 	radius: Config.values.cornerRounding * 0.4
-	color: backgroundColor
+	color: "transparent"
+
+	property alias mouseArea: mouseArea 
+	readonly property bool hovered: mouseArea.containsMouse 
+	readonly property bool down: mouseArea.containsPress
+
+	// Settable 
+	property color hoverColor: Colors._onSurfaceVariant
+	property real hoverOpacity: 0.08
 
 	implicitWidth: 30
 	implicitHeight: 30
@@ -34,23 +42,29 @@ Rectangle {
     }
 
 	// Set Background Color
-	property color backgroundColor: {
-		if (mouseArea.containsPress)
-			return Colors.topPrimary;
-		else if (mouseArea.containsMouse)
-			return Colors.primary;
-		else
-			return "transparent";
+	// readonly property color backgroundColor: {
+	// 	if (mouseArea.containsMouse)
+	// 		return Colors.primary;
+	// 	else
+	// 		return "transparent";
+	// }
+
+	Rectangle {
+		id: colorOverlay 
+		radius: root.radius
+		anchors.fill: root
+		opacity: mouseArea.containsMouse ? 0.08 : 0.0
+		color: root.hoverColor
+
+		Behavior on opacity { OpacityAnimator { duration: 125; easing.type: Easing.OutQuad} }
 	}
 
 	// Make foreground color available
 	property color foregroundColor: {
-		if (mouseArea.containsPress)
-			return Colors.primary;
-		else if (mouseArea.containsMouse)
-			return Colors.background;
+		if (mouseArea.containsMouse)
+			return Colors._onSurface;
 		else 
-			return Colors.primary;
+			return Colors._onSurface;
 	}
 
 	// Make foreground scale available
@@ -63,7 +77,7 @@ Rectangle {
 	Behavior on foregroundScale {
 		NumberAnimation {
 			duration: root.foregroundScale == 1.0 ? 150 : 200
-			easing.type: root.foregroundScale == 1.0 ? Easing.OutExpo : Easing.OutQuad
+			easing.type: root.foregroundScale == 1.0 ? Easing.OutBack : Easing.OutBack
 		}
 	}
 }

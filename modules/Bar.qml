@@ -49,7 +49,7 @@ PanelWindow {
 
     Rectangle {
         id: background
-        color: Colors.background
+        color: Colors.surface
         opacity: Config.values.shellOpacity
 		topLeftRadius: Config.values.screenCornerRounding * 1
 		bottomLeftRadius: Config.values.screenCornerRounding * 1

@@ -23,7 +23,7 @@ Variants {
 		WlrLayershell.layer: WlrLayer.Background
 		WlrLayershell.exclusiveZone: -1
 		exclusionMode: ExclusionMode.Ignore
-        color: Colors.background
+        color: Colors.surface
 
 		Connections {
 			target: Wallpaper

@@ -22,7 +22,7 @@ CollapsibleSection {
 				anchors.verticalCenter: parent.verticalCenter
 				width: 25 
 				height: 25 
-				color: Colors.primary
+				color: Colors._onSurface
 			}
 			LyxText {
 				id: title 
@@ -51,7 +51,7 @@ CollapsibleSection {
 				implicitHeight: 30
 				z: -1
 				radius: Config.values.cornerRounding
-				color: Colors.primary
+				color: Colors.secondaryContainer
 
 				Rectangle {
 					id: activeProfile
@@ -61,9 +61,9 @@ CollapsibleSection {
 					implicitWidth: 33
 					implicitHeight: 30
 					radius: 33
-					color: Colors.topPrimary
+					color: Colors.tertiaryContainer
 					border.width: 1
-					border.color: Colors.topPrimary
+					border.color: Colors._onSecondaryContainer
 
 					property var currentProfile
 					onCurrentProfileChanged: PowerProfiles.set(currentProfile)
@@ -74,21 +74,21 @@ CollapsibleSection {
 							name: "powerSaving"
 							PropertyChanges {
 								activeProfile { x: 0; currentProfile: "powerSaver" }
-								powerSavingIcon { color: Colors.topPrimaryContainer }
+								powerSavingIcon { color: Colors._onTertiaryContainer }
 							}
 						},
 						State {
 							name: "balanced"
 							PropertyChanges {
 								activeProfile { x: 33; currentProfile: "balanced" }
-								balancedIcon { color: Colors.topPrimaryContainer }
+								balancedIcon { color: Colors._onTertiaryContainer }
 							}
 						},
 						State {
 							name: "performance"
 							PropertyChanges {
 								activeProfile { x: 66; currentProfile: "performance" }
-								performanceIcon { color: Colors.topPrimaryContainer }
+								performanceIcon { color: Colors._onTertiaryContainer }
 							}
 						},
 					]
@@ -104,7 +104,7 @@ CollapsibleSection {
 					width: 24 
 					height: 24
 					iconId: "power-saving-leaf.svg"
-					color: Colors.background
+					color: Colors._onSurface
 				}
 				MouseArea {
 					x: 0 
@@ -122,7 +122,7 @@ CollapsibleSection {
 					height: 24
 					iconId: "balance.svg"
 					// color: activeProfile.state === "balanced" ? Colors.topPrimaryContainer : Colors.background
-					color: Colors.background
+					color: Colors._onSurface
 				}
 				MouseArea {
 					x: 33
@@ -142,7 +142,7 @@ CollapsibleSection {
 					height: 24
 					iconId: "rocket.svg"
 					// color: activeProfile.state === "performance" ? Colors.topPrimaryContainer : Colors.background
-					color: Colors.background
+					color: Colors._onSurface
 				}
 				MouseArea {
 					x: 66

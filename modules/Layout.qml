@@ -101,7 +101,7 @@ Variants {
 
 					Rectangle {
 						anchors.fill: parent
-						color: Colors.background
+						color: Colors.surface
 						opacity: Config.values.shellOpacity
 
 						Behavior on color { 
@@ -121,7 +121,7 @@ Variants {
 
 					ShapePath {
 						strokeWidth: 0
-						fillColor: Colors.background
+						fillColor: Colors.surface
 
 						Behavior on fillColor { ColorAnimation { duration: 500; easing.type: Easing.OutQuad } }
 

@@ -11,7 +11,7 @@ ToggleButton {
 	implicitHeight: 50
 	radius: Config.values.cornerRounding * 0.6
 	border.width: toggled ? 0 : 2
-	border.color: Colors.primaryContainer
+	border.color: Colors.outline
 
 	property string iconId 
 	property string title 

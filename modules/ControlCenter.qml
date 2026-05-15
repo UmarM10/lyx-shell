@@ -16,7 +16,7 @@ Item {
 	implicitWidth: root.implicitWidth 
 	implicitHeight: root.implicitHeight 
 
-	property int controlCenterWidth: 275
+	property int controlCenterWidth: 290
 	property int controlCenterHeight: 375
 
 	function show() { state = "visible" }
@@ -92,7 +92,7 @@ Item {
 		target: parent
 		corner: "bottomLeft"
 		radius: 20
-		color: powerModal.visible ? "black" : Colors.background
+		color: powerModal.visible ? "black" : Colors.surface
 		opacity: Config.values.shellOpacity
 
 		Behavior on color { ColorAnimation { duration: 100 } }
@@ -104,7 +104,7 @@ Item {
 		target: parent
 		corner: "bottomLeft" 
 		radius: 20
-		color: powerModal.visible ? "black" : Colors.background
+		color: powerModal.visible ? "black" : Colors.surface
 		opacity: Config.values.shellOpacity
 
 		Behavior on color { ColorAnimation { duration: 200 } }
@@ -126,7 +126,7 @@ Item {
 		Rectangle {
 			id: background 
 			anchors.fill: parent 
-			color: Colors.background
+			color: Colors.surface
 			opacity: Config.values.shellOpacity
 		}
 

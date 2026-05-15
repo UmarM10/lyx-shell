@@ -10,7 +10,7 @@ Rectangle {
 	property int childrenHeight 
 	property bool collapsed: state === "collapsed" ? true : false
 	radius: Config.values.cornerRounding * 0.5
-	color: Colors.primaryContainer 
+	color: Colors.surfaceContainerHighest
 
 	Component.onCompleted: {
 		root.childrenHeight = contentItem.childrenRect.height

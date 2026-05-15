@@ -16,14 +16,14 @@ Rectangle {
 	anchors.rightMargin: 1
 	implicitWidth: parent.width - 32
 	implicitHeight: 15
-	color: Colors.primaryContainerVariant
+	color: Colors.primaryContainer
 	radius: Config.values.cornerRounding * 0.25
 
 	Rectangle {
 		id: leftActiveTrack
 		anchors.right: trackHead.horizontalCenter
 		anchors.left: root.left
-		color: Colors.primaryContainer
+		color: Colors._onPrimaryContainer
 		implicitWidth: root.width - (root.displayValue * root.width)
 		implicitHeight: root.implicitHeight
 		radius: 5

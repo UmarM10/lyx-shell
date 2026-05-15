@@ -40,24 +40,17 @@ Rectangle {
 	}
 
 	color: {
-		if (mouseArea.containsPress)
-			return Colors.primaryContainerVariant
-		else if (toggled)
-			return Colors.primary
-		else if (mouseArea.containsMouse)
-			return Colors.primaryContainer
+		if (toggled)
+			return Colors.secondary
 		else 
 			return "transparent"
 	}
 
 	// Make foreground color available
 	foregroundColor: {
-		if (mouseArea.containsPress)
-			return Colors.primary
 		if (toggled) 
-			return Colors.background
-		else
-			return Colors.primary;
+			return Colors._onSecondary
+		else return Colors._onSurface
 	}
 
 	// Make foreground scale available
@@ -70,7 +63,7 @@ Rectangle {
 	Behavior on foregroundScale {
 		NumberAnimation {
 			duration: root.foregroundScale == 1.0 ? 150 : 200
-			easing.type: root.foregroundScale == 1.0 ? Easing.OutExpo : Easing.OutQuad
+			easing.type: root.foregroundScale == 1.0 ? Easing.OutBack : Easing.OutQuad
 		}
 	}
 }

@@ -16,7 +16,7 @@ Singleton {
 
 	FileView {
 		id: configFile
-		path: Info.currentUser ? Qt.resolvedUrl(`file:///home/${Info.currentUser}/LyxShell/lyxshell.json`) : undefined
+		path: Info.currentUser ? Qt.resolvedUrl(`file:///home/${Info.currentUser}/Lyx/lyxshell.json`) : undefined
 		watchChanges: true 
 		onFileChanged: reload()
 		onAdapterUpdated: writeAdapter()

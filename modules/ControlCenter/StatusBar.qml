@@ -46,6 +46,7 @@ Rectangle {
 			anchors.verticalCenter: parent.verticalCenter
 			anchors.right: parent.right 
 			anchors.rightMargin: 2
+			z: 0
 			text: root.sliderText
 			color: Colors.primary
 			font.pixelSize: 12 

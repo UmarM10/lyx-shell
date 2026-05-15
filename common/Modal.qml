@@ -25,7 +25,7 @@ Rectangle {
 	Rectangle {
 		id: background
 		anchors.fill: parent
-		color: "black"
+		color: Colors.scrim
 		opacity: 0.8
 		radius: root.backgroundRadius
 
@@ -42,7 +42,7 @@ Rectangle {
 	Rectangle {
 		id: foreground
 		anchors.centerIn: parent
-		color: Colors.background
+		color: Colors.surface
 		implicitHeight: root.modalHeight
 		implicitWidth: root.modalWidth
 		radius: Config.values.cornerRounding

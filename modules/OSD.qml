@@ -17,7 +17,7 @@ Item {
 	Corner {
 		target: parent
 		corner: "topRight"
-		color: Colors.background
+		color: Colors.surface
 		opacity: showAnimation.running || hideTimerAnimation.running ? 1.0 : 0.0
 		radius: 10
 
@@ -33,7 +33,7 @@ Item {
 	Corner {
 		target: parent
 		corner: "topLeft"
-		color: Colors.background
+		color: Colors.surface
 		opacity: showAnimation.running || hideTimerAnimation.running ? 1.0 : 0.0
 		radius: 10
 
@@ -53,7 +53,7 @@ Item {
 		implicitWidth: 300
 		implicitHeight: 0
 		opacity: 1.0
-		color: Colors.background
+		color: Colors.surface
 		bottomLeftRadius: 20
 		bottomRightRadius: 20
 		anchors.horizontalCenter: parent.horizontalCenter
@@ -147,11 +147,11 @@ Item {
 			implicitWidth: 230
 			implicitHeight: 30
 			radius: 10
-			color: Colors.primaryContainerVariant
+			color: Colors.primaryContainer
 
 			Rectangle {
 				id: leftActiveTrack
-				color: Colors.primaryContainer
+				color: Colors.primary
 				anchors.right: currentVolumeRect.left
 				anchors.rightMargin: -10
 				implicitHeight: 30
@@ -180,7 +180,7 @@ Item {
 					font.pointSize: 12
 					font.weight: 600
 					text: Math.round(Audio.defaultSinkAudio.volume * 100)
-					color: Colors.background
+					color: Colors._onPrimary
 				}
 			}
 		}

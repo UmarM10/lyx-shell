@@ -15,7 +15,7 @@ Rectangle {
 	// anchors.topMargin: 8
 	implicitWidth: parent.width - 15
 	implicitHeight: 32
-	color: Colors.primaryContainer
+	color: Colors.surfaceContainerHighest
 	radius: Config.values.cornerRounding * 0.5
 
 	property var powerModal
@@ -62,7 +62,7 @@ Rectangle {
 			anchors.verticalCenter: parent.verticalCenter
 			text: usernameCollector.text
 			elide: Text.ElideRight
-			color: Colors.primary
+			color: Colors._onSurface
 			usePercentSize: true 
 			percentSize: 0.9
 		}
@@ -77,7 +77,7 @@ Rectangle {
 		LyxText {
 			id: uptimeText
 			text: uptimeCollector.text
-			color: Colors.primary
+			color: Colors._onSurface
 			anchors.verticalCenter: parent.verticalCenter
 			usePercentSize: true 
 			percentSize: 0.6

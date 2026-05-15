@@ -11,5 +11,5 @@ Text {
 	font.family: Config.values.fontFace
 	font.weight: Config.values.fontWeight + weightModifier
 	font.pixelSize: usePercentSize ? percentSize * Config.values.fontPixelSize : Config.values.fontPixelSize
-	color: Colors.primary
+	color: Colors._onSurfaceVariant
 }
