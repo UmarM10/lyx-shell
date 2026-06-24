@@ -5,7 +5,6 @@ import QtQuick
 
 import qs 
 import qs.common 
-import qs.modules.Dashboard
 import qs.config 
 
 ClippingRectangle {

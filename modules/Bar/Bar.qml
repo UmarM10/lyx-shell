@@ -6,7 +6,6 @@ import Qt5Compat.GraphicalEffects
 import qs
 import qs.common
 import qs.config
-import qs.modules.Bar
 
 PanelWindow {
     id: barPanel

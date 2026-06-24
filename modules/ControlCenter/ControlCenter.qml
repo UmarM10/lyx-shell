@@ -6,7 +6,6 @@ import qs
 import qs.common 
 import qs.services
 import qs.config
-import qs.modules.ControlCenter
 
 Item {
 	id: controlCenterWrapper

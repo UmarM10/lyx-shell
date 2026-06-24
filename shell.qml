@@ -4,8 +4,12 @@ import Quickshell
 import Quickshell.Io
 import QtQuick
 
-import qs.modules
-import qs.modules.panels
+import qs.modules 
+import qs.modules.OSD 
+import qs.modules.Dashboard
+import qs.modules.ControlCenter 
+import qs.modules.Bar
+
 import qs.config
 import qs.services
 
