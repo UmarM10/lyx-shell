@@ -12,11 +12,17 @@ import qs
 Singleton {
 	id: root
 	function write() { configFile.writeAdapter() }
-	property alias values: values
+	property alias general: general
+	property alias values: general // Legacy
+
+	property alias bar: general.bar
+	property alias controlCenter: general.controlCenter
+	property alias dashboard: general.dashboard
+
 
 	FileView {
 		id: configFile
-		path: Info.currentUser ? Qt.resolvedUrl(`file:///home/${Info.currentUser}/Lyx/lyxshell.json`) : undefined
+		path: Info.currentUser ? Qt.resolvedUrl(`${Info.currentHome}/evolyx/lyxshell.json`) : undefined
 		watchChanges: true 
 		onFileChanged: reload()
 		onAdapterUpdated: writeAdapter()
@@ -29,18 +35,26 @@ Singleton {
 		preload: true
 
 		adapter: JsonAdapter {
-			id: values 
+			id: general 
 
 			property int cornerRounding: 20 
 			property int screenCornerRounding: 20 
 			property real shellOpacity: 1.0
 
 			property int fontWeight: 600 
-			property int fontPixelSize: 14
+			property int fontPixelSize: 16
 			property string fontFace: "Figtree"
-			property string barClockFontFace: "SF Pro Display"
-			property int barClockFontWeight: 600
-			property string clockFace: "SF Pro Display"
+			property string clockFontFace: "SF Pro Display"
+
+			property JsonObject bar: BarConfig {
+				id: bar
+			}
+			property JsonObject controlCenter: ControlCenterConfig {
+				id: controlCenter
+			}
+			property JsonObject dashboard: DashboardConfig {
+				id: dashboard
+			}
 		}
 	}
 }

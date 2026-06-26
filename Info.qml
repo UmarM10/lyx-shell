@@ -8,7 +8,8 @@ Singleton {
 	id: shellInfo
 
 	readonly property url projectRoot: Quickshell.shellDir
-	readonly property string currentUser: userCollector.text.slice(0, -1)
+	readonly property string currentUser: Quickshell.env("USER")
+	readonly property string currentHome: Quickshell.env("HOME")
 	readonly property string configHome: configHomeCollector.text
 
 	Process {

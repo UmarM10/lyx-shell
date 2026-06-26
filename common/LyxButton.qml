@@ -6,7 +6,7 @@ import qs.config
 
 Rectangle {
 	id: root
-	radius: Config.values.cornerRounding * 0.4
+	radius: Config.general.cornerRounding * 0.4
 	color: "transparent"
 
 	property alias mouseArea: mouseArea 

@@ -5,6 +5,7 @@ import Quickshell.Io
 import QtQuick
 
 import qs.modules 
+import qs.modules.ScreenBorder
 import qs.modules.OSD 
 import qs.modules.Dashboard
 import qs.modules.ControlCenter 
@@ -23,7 +24,7 @@ ShellRoot {
     Background {
         id: background
     }
-    Layout {
+    ScreenBorder {
         id: layout
     }
     OSDPanel {

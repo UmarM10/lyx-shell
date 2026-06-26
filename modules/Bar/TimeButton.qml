@@ -21,8 +21,8 @@ LyxButton {
 		horizontalAlignment: Text.AlignHCenter
 		text: Qt.formatDateTime(clock.date, "hh\nmm AP").slice(0, 5)
 		font.pixelSize: 20
-		font.family: Config.values.barClockFontFace
-		font.weight: Config.values.barClockFontWeight
+		font.family: Config.bar.clockFontFace
+		font.weight: Config.bar.clockFontWeight
 		font.letterSpacing: 0.3
 		color: root.foregroundColor
 		scale: root.foregroundScale

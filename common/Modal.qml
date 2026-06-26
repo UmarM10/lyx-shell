@@ -45,7 +45,7 @@ Rectangle {
 		color: Colors.surface
 		implicitHeight: root.modalHeight
 		implicitWidth: root.modalWidth
-		radius: Config.values.cornerRounding
+		radius: Config.general.cornerRounding
 
 		MouseArea { id: foregroundMouseArea; anchors.fill: parent }
 	}

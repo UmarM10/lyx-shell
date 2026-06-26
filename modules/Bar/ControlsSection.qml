@@ -29,7 +29,7 @@ Rectangle {
 		Behavior on opacity { OpacityAnimator { duration: 100; easing.type: Easing.OutQuad } }
 	}
 
-    radius: Config.values.cornerRounding * 0.6
+    radius: Config.general.cornerRounding * 0.6
     border.width: 2
     border.color: Colors.outlineVariant
 

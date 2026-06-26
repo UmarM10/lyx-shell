@@ -30,7 +30,7 @@ PanelWindow {
 	FastBlur {
 		source: blurSource
 		radius: 50
-		visible: Config.values.shellOpacity < 1.0
+		visible: Config.general.shellOpacity < 1.0
 		anchors.fill: parent
 		z: -2
 
@@ -49,9 +49,9 @@ PanelWindow {
     Rectangle {
         id: background
         color: Colors.surface
-        opacity: Config.values.shellOpacity
-		topLeftRadius: Config.values.screenCornerRounding * 1
-		bottomLeftRadius: Config.values.screenCornerRounding * 1
+        opacity: Config.general.shellOpacity
+		topLeftRadius: Config.general.screenCornerRounding * 1
+		bottomLeftRadius: Config.general.screenCornerRounding * 1
 		z: 0
 
 		Behavior on color { ColorAnimation { duration: 500; easing.type: Easing.OutQuad } }
@@ -67,7 +67,7 @@ PanelWindow {
 		anchors.left: parent.left 
 		target: parent
 		corner: "topLeft"
-		radius: Config.values.screenCornerRounding
+		radius: Config.general.screenCornerRounding
 		color: "black"
 	}
 	Corner {
@@ -75,7 +75,7 @@ PanelWindow {
 		anchors.left: parent.left 
 		target: parent
 		corner: "bottomLeft"
-		radius: Config.values.screenCornerRounding
+		radius: Config.general.screenCornerRounding
 		color: "black"
 	}
 
