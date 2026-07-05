@@ -27,24 +27,24 @@ PanelWindow {
 
 	property alias controlCenter: controlsSection.controlCenter
 
-	FastBlur {
-		source: blurSource
-		radius: 50
-		visible: Config.general.shellOpacity < 1.0
-		anchors.fill: parent
-		z: -2
-
-		Image {
-			id: blurSource
-			visible: false
-			width: barPanel.width 
-			height: barPanel.height
-			source: ShellState.values.currentWallpaperPath
-			fillMode: Image.PreserveAspectCrop
-			horizontalAlignment: Image.AlignLeft
-			verticalAlignment: Image.AlignVCenter
-		}
-	}
+	// FastBlur {
+	// 	source: blurSource
+	// 	radius: 50
+	// 	visible: Config.general.shellOpacity < 1.0
+	// 	anchors.fill: parent
+	// 	z: -2
+	//
+	// 	Image {
+	// 		id: blurSource
+	// 		visible: false
+	// 		width: barPanel.width 
+	// 		height: barPanel.height
+	// 		source: ShellState.values.currentWallpaperPath
+	// 		fillMode: Image.PreserveAspectCrop
+	// 		horizontalAlignment: Image.AlignLeft
+	// 		verticalAlignment: Image.AlignVCenter
+	// 	}
+	// }
 
     Rectangle {
         id: background

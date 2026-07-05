@@ -86,18 +86,18 @@ Variants {
 					visible: false
 					layer.enabled: true
 
-					Image {
-						id: blurSource
-						anchors.fill: parent
-						source: ShellState.values.currentWallpaperPath
-						visible: false
-					}
-
-					FastBlur {
-						anchors.fill: parent
-						source: blurSource
-						radius: 50 
-					}
+					// Image {
+					// 	id: blurSource
+					// 	anchors.fill: parent
+					// 	source: ShellState.values.currentWallpaperPath
+					// 	visible: false
+					// }
+					//
+					// FastBlur {
+					// 	anchors.fill: parent
+					// 	source: blurSource
+					// 	radius: 50 
+					// }
 
 					Rectangle {
 						anchors.fill: parent
