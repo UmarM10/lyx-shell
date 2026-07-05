@@ -151,7 +151,7 @@ Item {
 
 			Rectangle {
 				id: leftActiveTrack
-				color: Colors.primary
+				color: Colors._onPrimaryContainer
 				anchors.right: currentVolumeRect.left
 				anchors.rightMargin: -10
 				implicitHeight: 30
@@ -164,7 +164,7 @@ Item {
 				implicitWidth: 30
 				implicitHeight: 30
 				anchors.verticalCenter: parent.verticalCenter
-				color: Colors.primary
+				color: Colors._onPrimaryContainer
 
 				x: Audio.defaultSinkAudio.volume * 200
 				Behavior on x {
@@ -180,7 +180,7 @@ Item {
 					font.pointSize: 12
 					font.weight: 600
 					text: Math.round(Audio.defaultSinkAudio.volume * 100)
-					color: Colors._onPrimary
+					color: Colors.primaryContainer
 				}
 			}
 		}

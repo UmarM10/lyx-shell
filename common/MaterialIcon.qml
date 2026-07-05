@@ -10,7 +10,7 @@ Image {
 	source: `${Info.projectRoot}/assets/${iconId}`
 
 	required property string iconId
-	property color color: "white"
+	property color color: Colors._onSurface
 
     LyxIconAnimation {
         id: iconSwapAnimation
