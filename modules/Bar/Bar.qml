@@ -25,7 +25,8 @@ PanelWindow {
     implicitWidth: 55
     color: "transparent"
 
-	property alias controlCenter: controlsSection.controlCenter
+	property var controlCenter
+	property var sidebar
 
 	// FastBlur {
 	// 	source: blurSource
@@ -112,10 +113,14 @@ PanelWindow {
 		}
 		spacing: 5
 
-		TimeButton {}
+		TimeButton { sidebar: barPanel.sidebar }
 
 		Separator { anchors.horizontalCenter: parent.horizontalCenter }
 
-		ControlsSection { id: controlsSection }
+		ControlsSection { 
+			id: controlsSection
+			controlCenter: barPanel.controlCenter 
+			sidebar: barPanel.sidebar
+		}	
 	}
 }

@@ -9,10 +9,13 @@ LyxButton {
 	anchors.horizontalCenter: parent.horizontalCenter
 	implicitHeight: 47
 	implicitWidth: 30
+
+	property var sidebar
+	onClicked: sidebar.toggle("time")
 	
 	SystemClock {
 		id: clock
-		precision: SystemClock.Seconds
+		precision: SystemClock.Minutes
 	}
 
 	LyxText {

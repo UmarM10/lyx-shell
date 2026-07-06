@@ -34,6 +34,7 @@ Rectangle {
     border.color: Colors.outlineVariant
 
 	property var controlCenter
+	property var sidebar
 
     Behavior on color {
         ColorAnimation {
@@ -156,25 +157,38 @@ Rectangle {
         onClicked: root.onClickedFunc()
     }
     function onClickedFunc() {
-        if (root.state === "") {
-			stateAutoChanger.enabled = false;
-            pressedAnimation.restart();
-            controlCenter.show();
-			stateAutoChanger.enabled = true;
-        } else {
-			stateAutoChanger.enabled = false;
-            root.state = "";
-            revertAnimation.restart();
-            controlCenter.hide();
-			stateAutoChanger.enabled = true;
-        }
-    }
+//      if (root.state === "") {
+		// stateAutoChanger.enabled = false;
+//          pressedAnimation.restart();
+//          controlCenter.show();
+		// stateAutoChanger.enabled = true;
+//      } else {
+		// stateAutoChanger.enabled = false;
+//          root.state = "";
+//          revertAnimation.restart();
+//          controlCenter.hide();
+		// stateAutoChanger.enabled = true;
+//      }
+		
+		stateAutoChanger.enabled = false; 
+		if (root.state === "") {
+		   pressedAnimation.restart();
+		   root.sidebar.show("controls");
+	    } else {
+		   root.state = "";
+		   revertAnimation.restart();
+		   root.sidebar.hide();
+	   }
+	   stateAutoChanger.enabled = true;
+	}
+
 	Connections {
 		id: stateAutoChanger
-		target: root.controlCenter
+		target: root.sidebar
 		function onStateChanged() {
-			if (root.controlCenter.state === "visible") {
+			if (root.sidebar.state === "") {
 				root.state = "pressed"
+				pressedAnimation.restart()
 			} else {
 				root.state = ""; 
 				revertAnimation.restart();

@@ -7,6 +7,7 @@ import QtQuick
 import qs.modules 
 import qs.modules.ScreenBorder
 import qs.modules.OSD 
+import qs.modules.Sidebar
 import qs.modules.Dashboard
 import qs.modules.ControlCenter 
 import qs.modules.Bar
@@ -18,9 +19,14 @@ ShellRoot {
     id: rootShell
 
     settings {
-        watchFiles: false
+        watchFiles: true
     }
 
+	DebugPanel {
+		id: debugPanel
+		controlCenter: controlCenterPanel.controlCenter
+		sidebar: sidebar
+	}
     Background {
         id: background
     }
@@ -30,6 +36,9 @@ ShellRoot {
     OSDPanel {
         id: osd
     }
+	Sidebar {
+		id: sidebar
+	}
 	DashboardPanel {
         id: dashboard
     }
@@ -40,5 +49,6 @@ ShellRoot {
         id: bar
         screen: Quickshell.screens[0]
         controlCenter: controlCenterPanel.controlCenter
+		sidebar: sidebar
     }
 }
