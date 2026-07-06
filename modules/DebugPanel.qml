@@ -9,7 +9,7 @@ PanelWindow {
 
 	width: 300 
 	height: 200
-	visible: true 
+	visible: false
 	color: Colors.surface 
 	aboveWindows: false
 

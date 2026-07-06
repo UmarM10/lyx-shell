@@ -98,7 +98,7 @@ PanelWindow {
 						NumberAnimation {
 							property: "opacity"
 							easing.type: Easing.OutExpo
-							duration: 300
+							duration: 200
 						}
 					}
 				}
@@ -116,7 +116,7 @@ PanelWindow {
 						NumberAnimation {
 							property: "opacity"
 							easing.type: Easing.OutExpo
-							duration: 300
+							duration: 200
 						}
 					}
 					PropertyAction {
