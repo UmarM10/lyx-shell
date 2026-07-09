@@ -5,11 +5,6 @@ import qs
 import qs.common 
 
 Column {
-	anchors.top: parent.top 
-	anchors.left: parent.left 
-	anchors.topMargin: 10
-	anchors.leftMargin: 10
-
 	SystemClock {
 		id: clock 
 		precision: SystemClock.Seconds

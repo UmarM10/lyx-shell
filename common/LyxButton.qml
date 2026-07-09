@@ -51,10 +51,14 @@ Rectangle {
 
 	Rectangle {
 		id: colorOverlay 
-		radius: root.radius
 		anchors.fill: root
-		opacity: mouseArea.containsMouse ? 0.08 : 0.0
+		opacity: mouseArea.containsMouse ? root.hoverOpacity : 0.0
 		color: root.hoverColor
+
+		topLeftRadius: root.topLeftRadius 
+		topRightRadius: root.topRightRadius 
+		bottomLeftRadius: root.bottomLeftRadius 
+		bottomRightRadius: root.bottomRightRadius
 
 		Behavior on opacity { OpacityAnimator { duration: 125; easing.type: Easing.OutQuad} }
 	}

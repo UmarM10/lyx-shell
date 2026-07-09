@@ -18,7 +18,7 @@ PanelWindow {
 
 	WlrLayershell.namespace: "lyx-sidebar"
 	WlrLayershell.exclusiveZone: 0
-	mask: Region {}
+	mask: Region { item: background }
 	
 	anchors {
 		top: true 
@@ -65,7 +65,16 @@ PanelWindow {
 		topLeftRadius: Config.general.cornerRounding
 		bottomLeftRadius: Config.general.cornerRounding
 
-		TopTime {}
+		Column {
+			anchors.top: parent.top 
+			anchors.left: parent.left
+			anchors.topMargin: 10 
+			spacing: 15
+			width: parent.width - 20
+
+			TopTime {}
+			NotificationSection {}
+		}
 
 		state: "hidden"
 		states: [
@@ -118,11 +127,6 @@ PanelWindow {
 							easing.type: Easing.OutExpo
 							duration: 200
 						}
-					}
-					PropertyAction {
-						target: sidebarPanel 
-						property: "visible"
-						value: false
 					}
 				}
 			}
