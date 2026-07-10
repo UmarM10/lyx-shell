@@ -19,14 +19,16 @@ PanelWindow {
 	WlrLayershell.namespace: "lyx-sidebar"
 	WlrLayershell.exclusiveZone: 0
 	mask: Region { item: background }
-	
+
+	focusable: true
+
 	anchors {
 		top: true 
 		left: true 
 		bottom: true
 	}
 
-	implicitWidth: 400 
+	implicitWidth: 450 
 	visible: false
 	color: "transparent"
 

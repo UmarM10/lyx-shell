@@ -98,16 +98,18 @@ Rectangle {
 		model: Notifications.server.trackedNotifications
 		clip: true
 		delegate: Notification {
+			id: notificationDelegate
 			notification: modelData
+			dragDismissed: false
 		}
-
+		
 		ScrollBar.vertical: scrollBar
 
 		remove: Transition {
 			NumberAnimation {
 				properties: "x" 
-				to: -300
-				duration: 200 
+				to: -400
+				duration: 150
 				easing.type: Easing.InExpo
 			}
 		}

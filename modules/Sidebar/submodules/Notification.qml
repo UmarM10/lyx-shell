@@ -10,18 +10,20 @@ import qs.config
 Rectangle {
 	id: root
 	implicitWidth: ListView.view ? ListView.view.width : 0
-	implicitHeight: expanded ? 110 : 75
-	color: Colors.surfaceContainerHighest
+	implicitHeight: content.height + 25
+	color: Colors.surfaceContainerHigh
 
 	Behavior on implicitHeight {
 		NumberAnimation { 
 			duration: 150 
 			easing.type: Easing.OutBack
-			easing.overshoot: 0.6
+			easing.overshoot: 0.9
 		}
 	}
 
 	property bool expanded: false
+
+	property bool dragDismissed: false
 
 	property Notification notification
 
@@ -76,32 +78,88 @@ Rectangle {
 		}
 
 		Column {
-			LyxText {
-				id: title 
-				weightModifier: +100 
-				usePercentSize: true 
-				percentSize: 1.0 
-				text: root.cachedSummary
-				width: 220
-				elide: Text.ElideRight
+			id: content
+			spacing: 10
+			Column {
+				LyxText {
+					id: title 
+					weightModifier: +100 
+					usePercentSize: true 
+					percentSize: 1.0 
+					text: root.cachedSummary
+					width: 265
+					elide: Text.ElideRight
+				}
+				LyxText {
+					id: body 
+					weightModifier: -100 
+					usePercentSize: true 
+					percentSize: 0.9
+					text: root.cachedBody
+					width: 270
+					wrapMode: Text.Wrap
+					maximumLineCount: root.expanded ? 4 : 2
+					elide: Text.ElideRight
+				}
 			}
-			LyxText {
-				id: body 
-				weightModifier: -100 
-				usePercentSize: true 
-				percentSize: 0.9
-				text: root.cachedBody
-				width: 220 
-				wrapMode: Text.Wrap
-				maximumLineCount: root.expanded ? 4 : 2
-				elide: Text.ElideRight
 
-				// Rectangle {
-				// 	anchors.fill: parent
-				// 	color: "red"
-				// 	opacity: 0.3
-				// 	radius: 5
-				// }
+			Row {
+				id: buttonActionPillButtons
+				visible: root.expanded
+				spacing: 3
+
+				property int buttonsTotalWidth: 270
+				property int buttonHeight: 25
+				
+				Repeater {
+					model: root.notification ? root.notification.actions : undefined
+					delegate: LyxButton {
+						id: actionButton
+
+						implicitWidth: buttonActionPillButtons.buttonsTotalWidth / root.notification.actions.length
+						implicitHeight: buttonActionPillButtons.buttonHeight
+
+						property bool leftButton: Positioner.index === 0 && (parent.children.length >= 3)
+						property bool rightButton: Positioner.index === (parent.children.length - 2) && Positioner.index != 0
+						property bool singleButton: !leftButton && !rightButton && Positioner.index === 0
+
+						topLeftRadius: !singleButton ? leftButton ? 20 : 2 : 20
+						bottomLeftRadius: topLeftRadius 
+
+						topRightRadius: !singleButton ? rightButton ? 20 : 2 : 20
+						bottomRightRadius: topRightRadius
+
+						color: Colors.primary
+						hoverColor: Colors._onPrimary
+
+						onVisibleChanged: {
+							if (visible) {
+								opacity = 0;
+								showAnimation.restart();
+							}
+						}
+
+						OpacityAnimator {
+							id: showAnimation
+							to: 1.0 
+							duration: 100
+							target: actionButton
+						}
+
+						LyxText {
+							anchors.centerIn: parent
+							color: Colors._onPrimary
+							text: modelData.text
+							usePercentSize: true
+							percentSize: 0.9
+							horizontalAlignment: Text.AlignHCenter
+							width: parent.width - 6
+							elide: Text.ElideRight
+						}
+
+						onClicked: modelData.invoke()
+					}
+				}
 			}
 		}
 	}
@@ -116,20 +174,22 @@ Rectangle {
 		LyxButton {
 			implicitWidth: 25 
 			implicitHeight: 25
-			color: Colors.primary
-			hoverColor: Colors._onPrimary
-			hoverOpacity: 0.2
-
+			color: Colors.surfaceContainerHighest
+			hoverColor: Colors._onSurface
+			
 			topLeftRadius: Positioner.index === 0 ? 10 : 2
 			bottomLeftRadius: topLeftRadius 
-			topRightRadius: Positioner.index === parent.children.length - 1 ? 10 : 2
+
+			// I made all this logic and pivoted to hardcode it cause realistically its probably only going 
+			// to be two buttons here.
+			topRightRadius: parent.children[1].visible ? 2 : 10
 			bottomRightRadius: topRightRadius
 
 			MaterialIcon {
 				anchors.centerIn: parent
 				width: 25; height: 25 
 				iconId: "chevron-down.svg"
-				color: Colors._onPrimary
+				color: Colors._onSurface
 
 				rotation: root.expanded ? 180 : 0
 				Behavior on rotation { 
@@ -143,27 +203,27 @@ Rectangle {
 
 			onClicked: root.expanded = !root.expanded
 		}
-
 		LyxButton {
 			implicitWidth: 25 
 			implicitHeight: 25
-			color: Colors.primary
-			hoverColor: Colors._onPrimary
-			hoverOpacity: 0.2
+			color: root.expanded ? Colors.secondary : Colors.primary
+			hoverColor: root.expanded ? Colors._onSecondary : Colors._onPrimary
 
-			topLeftRadius: Positioner.index === 0 ? 10 : 3
+			visible: root.notification ? root.notification.actions.length === 1 ? true : false : false
+			
+			topLeftRadius: Positioner.index === 0 ? 10 : 2
 			bottomLeftRadius: topLeftRadius 
-			topRightRadius: Positioner.index === parent.children.length - 1 ? 10 : 3
+			topRightRadius: Positioner.index === parent.children.length - 1 ? 10 : 2
 			bottomRightRadius: topRightRadius
 
 			MaterialIcon {
 				anchors.centerIn: parent
 				width: 19; height: 19 
-				iconId: "close.svg"
-				color: Colors._onPrimary
+				iconId: "launch.svg"
+				color: root.expanded ? Colors._onSecondary : Colors._onPrimary
 			}
 
-			onClicked: root.notification.dismiss()
+			onClicked: root.notification.actions[0].invoke()
 		}
 	}
 
@@ -179,24 +239,31 @@ Rectangle {
 		id: dragArea
 		anchors.fill: root
 		hoverEnabled: false
+		acceptedButtons: Qt.LeftButton | Qt.MiddleButton
 		drag.target: root
 		drag.maximumX: 10
 		drag.axis: Drag.XAxis
 		z: -1
+
+		onClicked: (mouse) => {
+			mouse.button === Qt.MiddleButton ? root.notification.dismiss() : null;
+			mouse.button === Qt.LeftButton ? root.expanded = !root.expanded : null;
+		}
 
 		property int initialX 
 		
 		property int dismissThreshold: -150
 
 		onPressed: {
-			root.x = initialX
+			root.x = initialX;
 		}
 
 		onReleased: {
 			if (root.x <= dismissThreshold) {
-				root.notification.dismiss()
+				root.dragDismissed = true;
+				root.notification.dismiss();
 			} else {
-				root.x = initialX
+				root.x = initialX;
 			}
 		}
 	}
