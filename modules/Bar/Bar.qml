@@ -8,6 +8,7 @@ import qs.common
 import qs.config
 
 Variants {
+	id: root
 	model: Quickshell.screens
 
 	property var controlCenter 
@@ -30,8 +31,8 @@ Variants {
 		implicitWidth: 55
 		color: "transparent"
 
-		property var controlCenter: parent.controlCenter
-		property var sidebar: parent.sidebar
+		property var controlCenter: root.controlCenter
+		property var sidebar: root.sidebar
 
 		Rectangle {
 			id: background
