@@ -95,6 +95,7 @@ Rectangle {
 		
 		orientation: ListView.Vertical
 		spacing: 3
+		bottomMargin: 10
 		model: Notifications.server.trackedNotifications
 		clip: true
 		delegate: Notification {
@@ -102,6 +103,7 @@ Rectangle {
 			notification: modelData
 			dragDismissed: false
 		}
+
 		
 		ScrollBar.vertical: scrollBar
 

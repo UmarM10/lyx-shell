@@ -7,120 +7,112 @@ import qs
 import qs.common
 import qs.config
 
-PanelWindow {
-    id: barPanel
-	WlrLayershell.namespace: "lyx-bar"
-    anchors {
-        left: true
-        top: true
-        bottom: true
-    }
-    // margins {
-    //     left: 5
-    //     top: 5
-    //     bottom: 5
-    //     right: 5
-    // }
+Variants {
+	model: Quickshell.screens
 
-    implicitWidth: 55
-    color: "transparent"
-
-	property var controlCenter
+	property var controlCenter 
 	property var sidebar
 
-	// FastBlur {
-	// 	source: blurSource
-	// 	radius: 50
-	// 	visible: Config.general.shellOpacity < 1.0
-	// 	anchors.fill: parent
-	// 	z: -2
-	//
-	// 	Image {
-	// 		id: blurSource
-	// 		visible: false
-	// 		width: barPanel.width 
-	// 		height: barPanel.height
-	// 		source: ShellState.values.currentWallpaperPath
-	// 		fillMode: Image.PreserveAspectCrop
-	// 		horizontalAlignment: Image.AlignLeft
-	// 		verticalAlignment: Image.AlignVCenter
-	// 	}
-	// }
-
-    Rectangle {
-        id: background
-        color: Colors.surface
-        opacity: Config.general.shellOpacity
-		topLeftRadius: Config.general.screenCornerRounding * 1
-		bottomLeftRadius: Config.general.screenCornerRounding * 1
-		z: 0
-
-		Behavior on color { ColorAnimation { duration: 500; easing.type: Easing.OutQuad } }
-
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.fill: parent
-    }
-
-	// Virtual Rounded Screen
-	Corner {
-		anchors.top: parent.top 
-		anchors.left: parent.left 
-		target: parent
-		corner: "topLeft"
-		radius: Config.general.screenCornerRounding
-		color: "black"
-	}
-	Corner {
-		anchors.bottom: parent.bottom
-		anchors.left: parent.left 
-		target: parent
-		corner: "bottomLeft"
-		radius: Config.general.screenCornerRounding
-		color: "black"
-	}
-
-	Column {
-		id: startOfBar
-		spacing: 5
+	delegate: PanelWindow {
+		id: barPanel
+		WlrLayershell.namespace: "lyx-bar"
 		anchors {
-			top: parent.top
-			topMargin: 10
-			horizontalCenter: parent.horizontalCenter
+			right: secondaryMonitor
+			left: !secondaryMonitor
+			top: true
+			bottom: true
 		}
 
-		NotificationsIcon {}
-		SystemTray {}
-	}
+		property var modelData
+		screen: modelData
+		property bool secondaryMonitor: modelData === Quickshell.screens[1]
 
-	Column {
-		id: centerOfBar
-		anchors {
-			centerIn: parent
-			horizontalCenter: parent.horizontalCenter
+		implicitWidth: 55
+		color: "transparent"
+
+		property var controlCenter: parent.controlCenter
+		property var sidebar: parent.sidebar
+
+		Rectangle {
+			id: background
+			color: Colors.surface
+			opacity: Config.general.shellOpacity
+			topLeftRadius: !barPanel.secondaryMonitor ? Config.general.screenCornerRounding * 1 : undefined
+			bottomLeftRadius: !barPanel.secondaryMonitor ? Config.general.screenCornerRounding * 1 : undefined
+			z: 0
+
+			Behavior on color { ColorAnimation { duration: 500; easing.type: Easing.OutQuad } }
+
+			anchors.horizontalCenter: parent.horizontalCenter
+			anchors.verticalCenter: parent.verticalCenter
+			anchors.fill: parent
 		}
-		spacing: 4.5
 
-		Workspaces {}
-	}
-
-	Column {
-		id: endOfBar
-		anchors {
-			bottom: parent.bottom
-			bottomMargin: 10
-			horizontalCenter: parent.horizontalCenter
+		// Virtual Rounded Screen
+		Corner {
+			visible: !barPanel.secondaryMonitor
+			anchors.top: parent.top 
+			anchors.left: parent.left 
+			target: parent
+			corner: "topLeft"
+			radius: Config.general.screenCornerRounding
+			color: "black"
 		}
-		spacing: 5
+		Corner {
+			visible: !barPanel.secondaryMonitor
+			anchors.bottom: parent.bottom
+			anchors.left: parent.left 
+			target: parent
+			corner: "bottomLeft"
+			radius: Config.general.screenCornerRounding
+			color: "black"
+		}
 
-		TimeButton { sidebar: barPanel.sidebar }
+		Column {
+			id: startOfBar
+			spacing: 5
+			anchors {
+				top: parent.top
+				topMargin: 10
+				horizontalCenter: parent.horizontalCenter
+			}
 
-		Separator { anchors.horizontalCenter: parent.horizontalCenter }
+			NotificationsIcon {}
+			SystemTray {}
+		}
 
-		ControlsSection { 
-			id: controlsSection
-			controlCenter: barPanel.controlCenter 
-			sidebar: barPanel.sidebar
-		}	
+		Column {
+			id: centerOfBar
+			anchors {
+				centerIn: parent
+				horizontalCenter: parent.horizontalCenter
+			}
+			spacing: 4.5
+
+			Workspaces {}
+		}
+
+		Column {
+			id: endOfBar
+			anchors {
+				bottom: parent.bottom
+				bottomMargin: 10
+				horizontalCenter: parent.horizontalCenter
+			}
+			spacing: 5
+
+			TimeButton { sidebar: barPanel.sidebar }
+
+			Separator { anchors.horizontalCenter: parent.horizontalCenter }
+
+			ControlsSection { 
+				id: controlsSection
+
+				visible: !barPanel.secondaryMonitor
+
+				controlCenter: barPanel.controlCenter 
+				sidebar: barPanel.sidebar
+			}	
+		}
 	}
 }

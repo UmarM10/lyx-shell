@@ -47,7 +47,6 @@ ShellRoot {
     }
     Bar {
         id: bar
-        screen: Quickshell.screens[0]
         controlCenter: controlCenterPanel.controlCenter
 		sidebar: sidebar
     }

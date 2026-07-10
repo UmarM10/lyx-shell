@@ -154,6 +154,8 @@ Variants {
 					radius: Config.values.screenCornerRounding
 					color: "black"
 
+					visible: rootOverlayPanel.primaryMonitor
+
 					anchors.top: target.top
 					anchors.right: target.right
 				}
@@ -162,6 +164,8 @@ Variants {
 					corner: "bottomRight"
 					radius: Config.values.screenCornerRounding
 					color: "black"
+
+					visible: rootOverlayPanel.primaryMonitor
 
 					anchors.bottom: target.bottom
 					anchors.right: target.right
