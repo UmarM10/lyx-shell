@@ -28,7 +28,7 @@ Rectangle {
 	property Notification notification
 
 	property var dateTime
-	property string formattedDateTime: dateTime ? Qt.formatDateTime(dateTime, "hh:mm AP") : "No Time"
+	property string formattedDateTime: dateTime ? Qt.formatDateTime(dateTime) : "No Time"
 
 	property string cachedSummary: ""
 	property string cachedBody: ""
@@ -100,25 +100,42 @@ Rectangle {
 						`${root.cachedSummary} · ${timeText}` 
 					}
 
-					property var currentTime: new Date()
 					Timer {
 						id: currentTimeUpdater
-						interval: 30000
-						onTriggered: parent.currentTime.now()
+						interval: 1000
+						repeat: true
+						running: true
+						onTriggered: parent.currentTime = new Date()
 					}
+					property var currentTime: new Date()
 					property string timeText: {
 						if (root.dateTime) {
 
-							let notifTime = root.dateTime; 
+							const notifTime = root.dateTime; 
+							const timeDiff = currentTime - notifTime;
 
-							if ( (currentTime - notifTime) <= 60000 ) {
+							const oneMin = 60000;
+							const oneHour = 60 * oneMin; 
+							const oneDay = 24 * oneHour;
+							const oneWeek = 7 * oneDay;
+
+							if (timeDiff < oneMin) {
 								return "Now";
-							} else {
-								return root.formattedDateTime;
-							}
+							} else if (timeDiff < oneHour) {
+								let dividedDiff = Math.floor(timeDiff / oneMin);
+								return dividedDiff.toString() + (dividedDiff === 1 ? " minute ago" : " minutes ago");
 
-						} else return "No Time"
+							} else if (timeDiff < oneDay) {
+								let dividedDiff = Math.floor(timeDiff / oneHour);
+								return dividedDiff.toString() + (dividedDiff === 1 ? " hour ago" : " hours ago");
+							} else if (timeDiff < oneWeek) {
+								let dividedDiff = Math.floor(timeDiff / oneDay);
+								return dividedDiff.toString() + (dividedDiff === 1 ? " day ago" : " days ago");
+							} else return root.formattedDateTime;
+
+						} else return "No Time";
 					}
+					
 
 					width: 265
 					elide: Text.ElideRight
