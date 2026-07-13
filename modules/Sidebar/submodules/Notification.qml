@@ -27,15 +27,24 @@ Rectangle {
 
 	property Notification notification
 
+	property var dateTime
+	property string formattedDateTime: dateTime ? Qt.formatDateTime(dateTime, "hh:mm AP") : "No Time"
+
 	property string cachedSummary: ""
 	property string cachedBody: ""
-	property var cachedImage: ""
+	property url cachedImage: ""
+	property var cachedActions: ""
+	property string cachedDesktopEntry: ""
+	property string cachedAppName: ""
 
 	onNotificationChanged: {
 		if (notification) {
-			cachedSummary = notification.summary 
-			cachedBody = notification.body 
-			cachedImage = notification.image
+			cachedSummary = notification.summary;
+			cachedBody = notification.body;
+			cachedImage = notification.image;
+			cachedActions = notification.actions;
+			cachedDesktopEntry = notification.desktopEntry;
+			cachedAppName = notification.appName;
 		}
 	}
 
@@ -66,6 +75,7 @@ Rectangle {
 		ClippingWrapperRectangle {
 			y: 3
 			visible: root.cachedImage
+			color: "transparent"
 			width: 31 
 			height: 31 
 			radius: 10
@@ -86,7 +96,30 @@ Rectangle {
 					weightModifier: +100 
 					usePercentSize: true 
 					percentSize: 1.0 
-					text: root.cachedSummary
+					text: {
+						`${root.cachedSummary} · ${timeText}` 
+					}
+
+					property var currentTime: new Date()
+					Timer {
+						id: currentTimeUpdater
+						interval: 30000
+						onTriggered: parent.currentTime.now()
+					}
+					property string timeText: {
+						if (root.dateTime) {
+
+							let notifTime = root.dateTime; 
+
+							if ( (currentTime - notifTime) <= 60000 ) {
+								return "Now";
+							} else {
+								return root.formattedDateTime;
+							}
+
+						} else return "No Time"
+					}
+
 					width: 265
 					elide: Text.ElideRight
 				}
@@ -174,8 +207,8 @@ Rectangle {
 		LyxButton {
 			implicitWidth: 25 
 			implicitHeight: 25
-			color: Colors.surfaceContainerHighest
-			hoverColor: Colors._onSurface
+			color: root.cachedActions[1] ? Colors.secondary : Colors.surfaceContainerHighest
+			hoverColor: root.cachedActions[1] ? Colors._onSecondary : Colors._onSurface
 			
 			topLeftRadius: Positioner.index === 0 ? 10 : 2
 			bottomLeftRadius: topLeftRadius 
@@ -189,7 +222,7 @@ Rectangle {
 				anchors.centerIn: parent
 				width: 25; height: 25 
 				iconId: "chevron-down.svg"
-				color: Colors._onSurface
+				color: root.cachedActions[1] ? Colors._onSecondary : Colors._onSurface
 
 				rotation: root.expanded ? 180 : 0
 				Behavior on rotation { 
@@ -209,7 +242,19 @@ Rectangle {
 			color: root.expanded ? Colors.secondary : Colors.primary
 			hoverColor: root.expanded ? Colors._onSecondary : Colors._onPrimary
 
-			visible: root.notification ? root.notification.actions.length === 1 ? true : false : false
+			visible: {
+				if (root.notification) {
+					if (root.notification.actions.length === 1) {
+						return true;
+					} else if (root.cachedDesktopEntry) {
+						let app = DesktopEntries.byId(root.cachedDesktopEntry);
+						app ? true : false;
+					} else if (root.cachedAppName) {
+						let app = DesktopEntries.heuristicLookup(root.cachedAppName);
+						app ? true : false;
+					}
+				}
+			}
 			
 			topLeftRadius: Positioner.index === 0 ? 10 : 2
 			bottomLeftRadius: topLeftRadius 
@@ -223,7 +268,19 @@ Rectangle {
 				color: root.expanded ? Colors._onSecondary : Colors._onPrimary
 			}
 
-			onClicked: root.notification.actions[0].invoke()
+			onClicked: {
+				if (root.notification.actions[0]) {
+					root.notification.actions[0].invoke();
+				} else if (root.cachedDesktopEntry) {
+					let app = DesktopEntries.byId(root.cachedDesktopEntry);
+					app ? app.execute() && console.log("Launched") : null;
+				} else if (root.cachedAppName) {
+					let app = DesktopEntries.heuristicLookup(root.cachedAppName);
+					app ? app.execute() && console.log("Launched") : null;
+				} else {
+					console.log("There are no providers to open this notification.")
+				}
+			}
 		}
 	}
 

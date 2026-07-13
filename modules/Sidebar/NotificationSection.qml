@@ -101,7 +101,7 @@ Rectangle {
 		delegate: Notification {
 			id: notificationDelegate
 			notification: modelData
-			dragDismissed: false
+			dateTime: Notifications.server.notificationDateTimes[index]
 		}
 
 		

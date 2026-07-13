@@ -9,8 +9,15 @@ Singleton {
 	NotificationServer { 
 		id: server 
 		actionsSupported: true
+
+		property var notificationDateTimes: []
+		
 		onNotification: (notification) => {
-			notification.tracked = true
+			if (!notification.transient) {
+				notificationDateTimes.push(new Date());
+				notification.tracked = true;
+			}
 		}
+
 	}
 }
